@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 // Always start by loading the default application setup.
 require __DIR__.'/viewings/header.php';
+
 ?>
 <!-- login -->
 <form action="../php/login.php" method="post" class="mx-auto mt-5 col-md-3 col-sm-6 col-sm-4">

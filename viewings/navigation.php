@@ -15,12 +15,12 @@
       <!-- <li class="nav-item"> TODO IF needed add below
       <a class="nav-link" href="rcposts.php">Most recent posts</a>
     </li> -->
-    <?php if (!isset($_SESSION['user'])):?>
+    <?php if (!isset($_SESSION['users'])):?>
       <li class="nav-item">
         <a href="../loginform.php" class="nav-link">Login</a>
       </li>
     <?php endif; ?>
-    <?php if (isset($_SESSION['user'])):?>
+    <?php if (isset($_SESSION['users'])):?>
       <li class="nav-item">
         <a href="../php/logout.php" class="nav-link">Logout</a>
       </li>
@@ -34,11 +34,11 @@
           <a class="dropdown-item" href="../accounts/settings.php">Settings</a>
         </div>
       </li>
-      <p class="font-italic text-secondary mt-2 mb-0">Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
+      <p class="font-italic text-secondary mt-2 mb-0">Welcome, <?php echo $_SESSION['users']['username'];?>!</p>
     <?php endif; ?>
-    <?php if (!isset($_SESSION['user'])):?>
+    <?php if (!isset($_SESSION['users'])):?>
       <li class="nav-item">
-        <a class="nav-link" href="/register.php">Not a member?</a>
+        <a class="nav-link" href="/registerform.php">Not a member?</a>
       </li>
     <?php endif; ?>
   </ul>

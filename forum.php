@@ -7,7 +7,7 @@
       <blockquote class="blockquote mb-0">
         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
       </blockquote>
-      <a href="#" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+      <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
     </div>
   </div>
   <div class="card col-sm-8 mt-2">
@@ -18,7 +18,7 @@
       <blockquote class="blockquote mb-0">
         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
       </blockquote>
-      <a href="#" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+      <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
     </div>
   </div>
   <div class="card col-sm-8 mt-2">
@@ -29,7 +29,7 @@
       <blockquote class="blockquote mb-0">
         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
       </blockquote>
-      <a href="#" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+      <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
     </div>
   </div>
   <div class="card col-sm-8 mt-2">
@@ -40,7 +40,7 @@
       <blockquote class="blockquote mb-0">
         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
       </blockquote>
-      <a href="#" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+      <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
     </div>
   </div>
   <div class="card col-sm-8 mt-2">
@@ -51,7 +51,7 @@
       <blockquote class="blockquote mb-0">
         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
       </blockquote>
-      <a href="#" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+      <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
     </div>
   </div>
   <div class="card col-sm-8 mt-2">
@@ -62,7 +62,7 @@
       <blockquote class="blockquote mb-0">
         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
       </blockquote>
-      <a href="#" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+      <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
     </div>
   </div>
   <nav>
