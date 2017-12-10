@@ -18,6 +18,8 @@ require __DIR__.'/viewings/header.php';
   </div>
 </div>
 <?php // TODO: MAKE COMMENT BUTTON INVISIBLE IF LOGGED IN AND IF GETTING TO THIS PAGE ?>
+
+<?php if (isset($_SESSION['users'])): ?>
 <div class="col-md-4 col-sm-8 m-2">
   <form>
     <div class="form-group">
@@ -27,6 +29,7 @@ require __DIR__.'/viewings/header.php';
   </form>
   <button type="button" class="btn btn-secondary btn-sm p-0 m-0">Save</button>
 </div>
+<?php endif; ?>
 
 <?php // TODO: do logic to get the specific already commented comments on this post ?>
 

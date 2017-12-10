@@ -15,13 +15,13 @@ require __DIR__.'/viewings/header.php';
       </div>
       <div class="col-md-6 mb-3 pl-0">
         <label>Enter a valid email adress</label>
-        <input type="text" name="email" class="form-control" placeholder="Ex. Email@email.com"required>
+        <input type="email" name="email" class="form-control" placeholder="Ex. Email@email.com"required>
       </div>
     </div>
     <div class="column">
       <div class="col-md-6 mb-3 pl-0">
         <label>Password</label>
-        <input type="text" name="password" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
       </div>
       <!-- <div class="col-md-6 mb-3 pl-0">
         <label for="validationDefault04">Repeat Password...</label>
