@@ -1,0 +1,24 @@
+Tabell: User
+Column:
+ID -> INT
+Pass -> TEXT
+Email -> TEXT (PRIMARY KEY)
+Bio -> TEXT
+Picture -> TEXT
+
+
+Tabell: Entry
+Column:
+title -> TEXT
+Description -> TEXT
+Url -> TEXT
+ID -> ID -> ENTRY ID (Tabell: user-votes)
+
+Tabell: Votes
+Column:
+Entry-ID -> INT
+Score -> INT
+
+Tabell: User-votes
+Column:
+User-ID -> ENTRY ID (Tabell: Entry)
