@@ -3,9 +3,13 @@ declare(strict_types=1);
 
 require __DIR__.'/autoload.php';
 
-  $delete = "DELETE FROM users WHERE ID= :ID";
+  $id = $_GET['ID'];
 
-  $statement = $pdo->query($delete);
+  $delete = "DELETE FROM users WHERE ID= :ID";
+  $statement = $pdo->prepare($delete);
+
+  $statement->bindParam(':ID', $id, PDO::PARAM_STR);
+  $statement->execute();
 
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));

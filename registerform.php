@@ -25,7 +25,7 @@ require __DIR__.'/viewings/header.php';
       </div>
       <!-- <div class="col-md-6 mb-3 pl-0">
         <label for="validationDefault04">Repeat Password...</label>
-        <input type="text" name="password" class="form-control" id="validationDefault04" placeholder="Password" required>
+        <input type="password" name="password" class="form-control" id="validationDefault04" placeholder="Password" required>
       </div> -->
     </div>
     <button class="btn btn-dark mt-4" type="submit">Register</button>

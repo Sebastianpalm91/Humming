@@ -13,7 +13,7 @@ require __DIR__.'/../viewings/header.php';
     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Something about me</div>
     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages sent internal</div>
     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-      <button type="button" action="/../php/delete.php" method="post" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button>
+      <a href="/php/delete.php?ID=<?php echo $_SESSION['users']['ID']; ?>"><button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button></a>
       <button type="button" method="post" name="changepw" class="list-group-item list-group-item-action mt-1">Change password</button>
     </div>
   </div>
