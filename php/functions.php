@@ -29,8 +29,8 @@ function posts($pdo) {
 }
 
 function myPosts($pdo) {
-
-  $getmyPosts = "SELECT posts.postID, posts.title, posts.url, posts.date, posts.description, users.username FROM posts INNER JOIN users ON posts.postID=users.userID;";
+  $myposts = "SELECT * FROM users WHERE userID= :userID";
+  $getmyPosts = "SELECT posts.postID, posts.title, posts.url, posts.date, posts.description, users.username FROM posts INNER JOIN users ON posts.postID=users.userID  ";
 
   // $myPosts = "SELECT = {$getmyPosts} posts.postID, posts.title, posts.description, users.username FROM posts INNER JOIN users ON posts.postID=users.userID";
   $statement = $pdo->prepare($getmyPosts);

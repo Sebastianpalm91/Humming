@@ -28,6 +28,8 @@ if (isset($_POST['email'], $_POST['password'])) {
     $_SESSION['users'] = [
       'username' => $user['username'],
       'email' => $user['email'],
+      'bio' => $user['bio'],
+      'picutre' => $user['picture'],
       'userID' => $user['userID']
     ];
 

@@ -5,7 +5,7 @@ require __DIR__.'/../php/autoload.php';
 
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
   $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-  $username = $_POST['username'], FILTER_SANITIZE_STRING;
+  $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
   $statement = $pdo->prepare('INSERT INTO users (username, email, password) VALUES (:username, :email, :password)');
 
