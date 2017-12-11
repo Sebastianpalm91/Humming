@@ -19,6 +19,7 @@ if (isset($_POST['email'], $_POST['password'])) {
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+
   if (!$user) {
     redirect('/../loginform.php');
     echo "WRONG";
@@ -29,6 +30,8 @@ if (isset($_POST['email'], $_POST['password'])) {
       'email' => $user['email'],
       'userID' => $user['userID']
     ];
+
+    unset($user['password']);
 
     redirect('../index.php');
   }
