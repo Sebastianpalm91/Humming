@@ -1,24 +1,24 @@
 Tabell: User
 Column:
-ID -> INT
+userID -> INT (PRIMARY KEY)
 Pass -> TEXT
-Email -> TEXT (PRIMARY KEY)
+Email -> TEXT 
 Bio -> TEXT
 Picture -> TEXT
 
 
-Tabell: Entry
+Tabell: posts
 Column:
 title -> TEXT
 Description -> TEXT
 Url -> TEXT
-ID -> ID -> ENTRY ID (Tabell: user-votes)
+posts-ID -> userID (Tabell: user-votes)
 
 Tabell: Votes
 Column:
-Entry-ID -> INT
+votes-ID -> INT
 Score -> INT
 
 Tabell: User-votes
 Column:
-User-ID -> ENTRY ID (Tabell: Entry)
+votes-ID -> posts ID (Tabell: Entry)
