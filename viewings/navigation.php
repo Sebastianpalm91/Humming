@@ -20,10 +20,8 @@
         <a href="../loginform.php" class="nav-link">Login</a>
       </li>
     <?php endif; ?>
+
     <?php if (isset($_SESSION['users'])):?>
-      <li class="nav-item">
-        <a href="../php/logout.php" class="nav-link">Logout</a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
@@ -37,9 +35,16 @@
       <p class="font-italic text-secondary mt-2 mb-0">Welcome, <?php echo $_SESSION['users']['username'];?>!</p>
     <?php endif; ?>
     <?php if (!isset($_SESSION['users'])):?>
-      <li class="nav-item">
+      <li class="nav-item pull-right">
         <a class="nav-link" href="/registerform.php">Not a member?</a>
       </li>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['users'])):?>
+      <div class="clearfix">
+        <li class="nav-item float-right">
+          <a href="../php/logout.php" class="nav-link">Logout</a>
+        </li>
+      </div>
     <?php endif; ?>
   </ul>
   <form class="form-inline my-2 my-lg-0">

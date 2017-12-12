@@ -22,3 +22,13 @@ Score -> INT
 Tabell: User-votes
 Column:
 votes-ID -> posts ID (Tabell: Entry)
+
+
+DELETE ALL USERS:
+DELETE FROM users;
+
+CLEAR SQ AUTOINCREMENT:
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=‘users’;
+
+
+

@@ -14,8 +14,9 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+// make function for getting all the posts
 function posts($pdo) {
-  $allPosts = "SELECT * FROM posts";
+  $allPosts = "SELECT * FROM posts LEFT JOIN users ON posts.userID=users.userID";
 
   $statement = $pdo->prepare($allPosts);
 
@@ -27,19 +28,37 @@ function posts($pdo) {
   }
   return $resultPosts;
 }
-
+// make function for joining the table posts with username in users
 function myPosts($pdo) {
-  $myposts = "SELECT * FROM users WHERE userID= :userID";
-  $getmyPosts = "SELECT posts.postID, posts.title, posts.url, posts.date, posts.description, users.username FROM posts INNER JOIN users ON posts.postID=users.userID  ";
+  $getmyPosts = "SELECT posts.title, posts.url, posts.date, posts.description, users.username FROM posts INNER JOIN users ON posts.userID=users.userID";
 
-  // $myPosts = "SELECT = {$getmyPosts} posts.postID, posts.title, posts.description, users.username FROM posts INNER JOIN users ON posts.postID=users.userID";
   $statement = $pdo->prepare($getmyPosts);
 
   $statement->execute();
-  $resultmyPosts = $statement->fetchAll(PDO::PARAM_STR);
+  $resultmyPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));
   }
 return $resultmyPosts;
+
+}
+// make function for getting the profile info
+function myProfile($pdo) {
+  $id = $_SESSION['users']['userID'];
+  $getMyProfile = "SELECT * FROM users WHERE userID= :userID";
+
+  $statement = $pdo->prepare($getMyProfile);
+
+
+  $statement->bindParam(':userID', $id, PDO::PARAM_INT);
+
+  $statement->execute();
+
+  $resultGetMyProfile = $statement->fetchALL(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultGetMyProfile;
 
 }

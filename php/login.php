@@ -22,7 +22,6 @@ if (isset($_POST['email'], $_POST['password'])) {
 
   if (!$user) {
     redirect('/../loginform.php');
-    echo "WRONG";
   }
   if (password_verify($password, $user["password"])) {
     $_SESSION['users'] = [

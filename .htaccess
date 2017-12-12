@@ -1,4 +1,6 @@
 RewriteEngine on
-RewriteRule ^/?hello-reddit-user/([0-9]+)$  /index.php?id=$1
+
+RewriteRule ^index.php/([^/\.]+)/?$ index.php?page=home [L]
+
 php_value session.cookie_lifetime 180
 php_value session.gc_maxlifetime 180
