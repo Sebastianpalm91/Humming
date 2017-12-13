@@ -12,7 +12,7 @@
             </p>
             <h5><?php echo $post['url']; ?></h5>
             <p class="mb-0 smallfont">
-              Submitted <?php echo $post['date'].' hours ago by '.$post['username']; ?>
+              Submitted by: <?php echo $post['username']; ?>
             </p>
             <small></small>
           </blockquote>

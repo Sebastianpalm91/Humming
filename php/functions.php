@@ -62,3 +62,14 @@ function myProfile($pdo) {
   return $resultGetMyProfile;
 
 }
+
+// Date function
+
+function postTime($pdo) {
+  $getpostTime = "SELECT posts.date FROM posts";
+
+  $statement = $pdo->prepare($getpostTime);
+
+  $date = new DateTime($post['date']);
+
+ }
