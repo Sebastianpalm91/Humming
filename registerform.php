@@ -11,7 +11,8 @@ require __DIR__.'/viewings/header.php';
     <div class="column">
       <div class="col-md-6 mb-3 pl-0">
         <label>Choose a username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username" required>
+        <input type="text" name="username" class="form-control searchUser" placeholder="Username" required>
+        <p class="alreadyExists"></p>
       </div>
       <div class="col-md-6 mb-3 pl-0">
         <label>Enter a valid email adress</label>

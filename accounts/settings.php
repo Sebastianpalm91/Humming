@@ -31,71 +31,79 @@ require __DIR__.'/../viewings/header.php';
         <?php $profiles = myProfile($pdo) ?>
         <?php foreach($profiles as $profile):?>
           <div class="card mt-2">
-              <?php echo $profile['picture'];?>
+            <img class="profilePic" src=" <?php if(isset($profile['picture'])): ?>
+            <?php echo "../profileImages/".$profile['picture']; ?>
+          <?php else: echo "../profileImages/hummingLogo.png"; ?>
+            <?php endif; ?>" alt="">
             <div class="card-body pt-1 pb-1">
               <blockquote class="blockquote mb-0">
                 <p class="mb-0">
-              <small class="font-weight-light"><p>Username:</small> <?php echo $profile['username'];?></p>
-              <small class="font-weight-light"><p>Bio:</small> <?php echo $profile['bio'];?></p>
-              <small class="font-weight-light"><p>Email:</small> <?php echo $profile['email'];?></p>
-              </blockquote>
+                  <small class="font-weight-light"><p>Username:</small> <?php echo $profile['username'];?></p>
+                  <small class="font-weight-light"><p>Bio:</small> <?php echo $profile['bio'];?></p>
+                  <small class="font-weight-light"><p>Email:</small> <?php echo $profile['email'];?></p>
+                </blockquote>
+              </div>
             </div>
-          </div>
-        <?php endforeach; ?>
-        <h3 class="mt-5">Change your profile below</h3>
-        <form action="/php/changeProfile.php" method="post">
-          <div class="form-groupmt-1">
-            <label class="font-weight-light" for="username">New username</label>
-            <input type="text" class="form-control" name="username">
-          </div>
+          <?php endforeach; ?>
+          <h3 class="mt-5">Change your profile below</h3>
+          <form action="/php/changeProfile.php" method="post" enctype="multipart/form-data">
+            <div class="form-groupmt-1">
+              <label class="font-weight-light" for="username">New username</label>
+              <input type="text" class="form-control" name="username">
+            </div>
 
-          <div class="form-group">
-            <label class="font-weight-light" for="bio">New bio</label>
-            <textarea class="form-control" name="bio" rows="3"></textarea>
-          </div>
-          <div class="form-group">
-            <label class="font-weight-light" for="email">New email</label>
-            <input type="email" class="form-control" name="email"placeholder="name@example.com">
-          </div>
+            <div class="form-group">
+              <label class="font-weight-light" for="bio">New bio</label>
+              <textarea class="form-control" name="bio" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="font-weight-light" for="email">New email</label>
+              <input type="email" class="form-control" name="email" placeholder="name@example.com">
+            </div>
+              <div class="form-group">
+                <label>Change vatar</label>
+                <input type="file" class="form-control-file" name="picture">
+              </div>
             <button class="btn btn-dark mt-4 font-weight-light" type="submit">Save changes</button>
-        </form>
-      </div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tab" aria-labelledby="v-pills-messages-tab">
-        <p>My submits</p>
-        <?php $posts = myPosts($pdo) ?>
-        <?php foreach($posts as $post):?>
-          <div class="card mt-2">
-            <div class="card-header pt-1 pb-1">
-              <?php echo $post['title'];?>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-messages" role="tab" aria-labelledby="v-pills-messages-tab">
+          <p>My submits</p>
+          <?php $posts = myPosts($pdo) ?>
+          <?php foreach($posts as $post):?>
+            <div class="card mt-2">
+              <div class="card-header pt-1 pb-1">
+                <?php echo $post['title'];?>
+              </div>
+              <div class="card-body pt-1 pb-1">
+                <blockquote class="blockquote mb-0">
+                  <p class="mb-0">
+                    <?php echo $post['description']; ?>
+                  </p>
+                  <h5><?php echo $post['url']; ?></h5>
+                  <p class="mb-0 smallfont">
+                    Submitted by: <?php echo $post['username'].' on '.$post['postdate'] ?>
+                  </p>
+                </blockquote>
+                <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+              </div>
             </div>
-            <div class="card-body pt-1 pb-1">
-              <blockquote class="blockquote mb-0">
-                <p class="mb-0">
-                  <?php echo $post['description']; ?>
-                </p>
-                <h5><?php echo $post['url']; ?></h5>
-                <small><?php echo $post['date']; ?></small>
-                <small>posted by: <?php echo $post['username']; ?></small>
-              </blockquote>
-              <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+          <?php endforeach; ?>
+        </div>
+        <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
+          <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>"><button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button></a>
+        </div>
+        <div class="tab-pane fade" id="v-pills-changepass" role="tab" aria-labelledby="v-pills-changepass-tab">
+          <form action="../php/changePass.php" method="post" class="col-md-5 pl-0">
+            <div class="form-group">
+              <label for="password">New password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
-          </div>
-        <?php endforeach; ?>
-      </div>
-      <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
-        <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>"><button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button></a>
-      </div>
-      <div class="tab-pane fade" id="v-pills-changepass" role="tab" aria-labelledby="v-pills-changepass-tab">
-        <form action="../php/changePass.php" method="post" class="col-md-5 pl-0">
-          <div class="form-group">
-            <label for="password">New password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password">
-          </div>
-          <button type="submit" class="list-group-item list-group-item-action mt-1">Change password</button>
-        </form>
+            <button type="submit" class="list-group-item list-group-item-action mt-1">Change password</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<?php require __DIR__.'/../viewings/footer.php'; ?>
+  <?php require __DIR__.'/../viewings/footer.php'; ?>

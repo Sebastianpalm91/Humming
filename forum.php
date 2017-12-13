@@ -12,7 +12,7 @@
             </p>
             <h5><?php echo $post['url']; ?></h5>
             <p class="mb-0 smallfont">
-              Submitted by: <?php echo $post['username']; ?>
+              Submitted by: <?php echo $post['username'].' on '.$post['postdate'] ?>
             </p>
             <small></small>
           </blockquote>

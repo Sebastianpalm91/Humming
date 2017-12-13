@@ -3,4 +3,4 @@ RewriteEngine on
 RewriteRule ^index.php/([^/\.]+)/?$ index.php?page=home [L]
 
 php_value session.cookie_lifetime 180
-php_value session.gc_maxlifetime 180
+php_value session.gc_maxlifetime 18000

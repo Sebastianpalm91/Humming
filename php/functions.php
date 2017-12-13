@@ -16,7 +16,10 @@ if (!function_exists('redirect')) {
 }
 // make function for getting all the posts
 function posts($pdo) {
-  $allPosts = "SELECT * FROM posts LEFT JOIN users ON posts.userID=users.userID";
+  $allPosts = "SELECT * FROM posts
+               LEFT JOIN users
+               ON posts.userID=users.userID
+               ORDER BY postID DESC";
 
   $statement = $pdo->prepare($allPosts);
 
@@ -30,9 +33,16 @@ function posts($pdo) {
 }
 // make function for joining the table posts with username in users
 function myPosts($pdo) {
-  $getmyPosts = "SELECT posts.title, posts.url, posts.date, posts.description, users.username FROM posts INNER JOIN users ON posts.userID=users.userID";
-
+// SELECT posts.title, posts.url, posts.postdate, posts.description, users.username FROM posts LEFT JOIN users ON posts.postID=users.userID WHERE userID= :userID
+  $id = (int)$_SESSION['users']['userID'];
+  $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, users.username
+                 FROM posts
+                 LEFT JOIN users
+                 ON posts.userID=users.userID
+                 WHERE posts.userID= :userID
+                 ORDER BY posts.postID DESC;";
   $statement = $pdo->prepare($getmyPosts);
+  $statement->bindParam(':userID', $id, PDO::PARAM_INT);
 
   $statement->execute();
   $resultmyPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -45,8 +55,9 @@ return $resultmyPosts;
 }
 // make function for getting the profile info
 function myProfile($pdo) {
-  $id = $_SESSION['users']['userID'];
-  $getMyProfile = "SELECT * FROM users WHERE userID= :userID";
+  $id = (int)$_SESSION['users']['userID'];
+  $getMyProfile = "SELECT * FROM users
+                   WHERE userID= :userID";
 
   $statement = $pdo->prepare($getMyProfile);
 
@@ -73,3 +84,6 @@ function postTime($pdo) {
   $date = new DateTime($post['date']);
 
  }
+
+
+ // searching in db if username already exists
