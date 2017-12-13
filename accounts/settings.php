@@ -10,10 +10,10 @@ require __DIR__.'/../viewings/header.php';
 
   <div class="col-md-2 col-sm-4 mt-5">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="true">My submits</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="true">Settings</a>
-      <a class="nav-link" id="v-pills-changepass-tab" data-toggle="pill" href="#v-pills-changepass" role="tab" aria-controls="v-pills-changepass" aria-selected="true">Change password</a>
+      <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">My submits</a>
+      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+      <a class="nav-link" id="v-pills-changepass-tab" data-toggle="pill" href="#v-pills-changepass" role="tab" aria-controls="v-pills-changepass" aria-selected="false">Change password</a>
     </div>
   </div>
   <div class="col-md-6 col-sm-8 mt-5">
@@ -26,20 +26,20 @@ require __DIR__.'/../viewings/header.php';
       <?php unset($_SESSION['msg1']) ?>
     <?php endif; ?>
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade" id="v-pills-profile" role="tab" aria-labelledby="v-pills-profile-tab">
+      <div class="tab-pane fade show active" id="v-pills-profile" role="tab" aria-labelledby="v-pills-profile-tab">
 
         <?php $profiles = myProfile($pdo) ?>
         <?php foreach($profiles as $profile):?>
           <div class="card mt-2">
             <img class="profilePic" src=" <?php if(isset($profile['picture'])): ?>
             <?php echo "../profileImages/".$profile['picture']; ?>
-          <?php else: echo "../profileImages/hummingLogo.png"; ?>
+          <?php else: echo "../images/potato.jpg"; ?>
             <?php endif; ?>" alt="">
             <div class="card-body pt-1 pb-1">
               <blockquote class="blockquote mb-0">
                 <p class="mb-0">
-                  <small class="font-weight-light"><p>Username:</small> <?php echo $profile['username'];?></p>
-                  <small class="font-weight-light"><p>Bio:</small> <?php echo $profile['bio'];?></p>
+                  <small class="font-weight-light"><p>Hello</small> <?php echo $profile['username'];?>!</p>
+                  <small class="font-weight-light"><p>About myself</small><br> <?php echo $profile['bio'];?></p>
                   <small class="font-weight-light"><p>Email:</small> <?php echo $profile['email'];?></p>
                 </blockquote>
               </div>

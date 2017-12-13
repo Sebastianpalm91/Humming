@@ -9,12 +9,13 @@ let searchUsername = () => {
   })
   .then(response => {
     for (let user of response) {
+      console.log(searchUser+" == "+user.username)
       if (searchUser == user.username) {
         console.log("if")
-        alreadyExists.innerText = "Username already exists"
+        alreadyExists.textContent = "Username already exists"
       }
       else {
-        alreadyExists.innerText = ""
+        alreadyExists.textContent = ""
       }
     }
   })

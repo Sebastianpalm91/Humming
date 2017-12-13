@@ -4,7 +4,7 @@
     <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
 </div>
-<?php if (stripos($_SERVER['REQUEST_URI'], 'loginforum')): ?>
+<?php if (stripos($_SERVER['REQUEST_URI'], 'registerform')): ?>
 <script src="/js/userSearch.js"></script>
 <?php endif; ?>
 

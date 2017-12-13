@@ -14,9 +14,9 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['passw
   if ($password !== $passwordVerify) {
     $_SESSION['registerError']['passwordNoMatch'] = "Password dosent match";
     redirect('/../registerform.php');
-
+    exit;
   }
-  
+
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
   if (empty($_SESSION['registerError'])) {
@@ -28,6 +28,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['passw
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
+    $statement->execute();
   }
 
   if (!$statement) {
