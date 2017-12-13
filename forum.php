@@ -16,7 +16,7 @@
             </p>
             <small></small>
           </blockquote>
-          <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+          <a href="/commentsform.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
         </div>
       </div>
     <?php endforeach; ?>
@@ -50,10 +50,6 @@
         <label for="exampleFormControlTextarea1"></label>
         <textarea class="form-control" name="description"rows="3"></textarea>
       </div>
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file">
-        </div>
       <button type="submit" class="btn btn-secondary btn-sm p-0 m-0">Save</button>
     </form>
     </div>

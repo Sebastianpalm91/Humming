@@ -74,14 +74,25 @@ function myProfile($pdo) {
 
 }
 
-// Date function
+// Get posts when inside to comment
 
-function postTime($pdo) {
-  $getpostTime = "SELECT posts.date FROM posts";
+function postComments($pdo) {
+  $postComments = "SELECT * FROM posts
+               LEFT JOIN users
+               ON posts.userID=users.userID";
 
-  $statement = $pdo->prepare($getpostTime);
+  $statement = $pdo->prepare($postComments);
 
-  $date = new DateTime($post['date']);
+
+  $statement->execute();
+
+  $resultpostComment = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultpostComment;
+
 
  }
 
