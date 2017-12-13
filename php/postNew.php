@@ -4,9 +4,9 @@ declare(strict_types=1);
 require __DIR__.'/autoload.php';
 if (isset($_POST['title'], $_POST['description']) ) {
 
-  $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
+  $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
   // $url = filter_var($_POST['url'], FILTER_SANITIZE_STRING);
-  $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+  $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_STRING));
   $statement = $pdo->prepare('INSERT INTO posts (title, description, url, userID, postdate)
                               VALUES (:title, :description, :url, :userID, :postdate)');
   $postdate = date("M d, Y: H:i");

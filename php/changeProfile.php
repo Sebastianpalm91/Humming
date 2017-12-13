@@ -12,10 +12,10 @@ $ext = $info['extension']; // get the extension of the file
 $newname = $_SESSION['users']['username'].'.'.$ext;
 
   $userID = (int)$_SESSION['users']['userID'];
-  $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-  $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-  $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
-  $picture = filter_var($_SESSION['users']['username'].'.'.$ext, FILTER_SANITIZE_STRING);
+  $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+  $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
+  $bio = trim(filter_var($_POST['bio'], FILTER_SANITIZE_STRING));
+  $picture = trim(filter_var($_SESSION['users']['username'].'.'.$ext, FILTER_SANITIZE_STRING));
 
   $statement = $pdo->prepare('UPDATE users
                               SET email = :email, username = :username, bio = :bio, picture = :picture
