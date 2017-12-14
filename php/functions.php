@@ -35,6 +35,7 @@ function posts($pdo) {
 function myPosts($pdo) {
 // SELECT posts.title, posts.url, posts.postdate, posts.description, users.username FROM posts LEFT JOIN users ON posts.postID=users.userID WHERE userID= :userID
   $id = (int)$_SESSION['users']['userID'];
+  $postID = (int)$_SESSION['posts']['postID'];
   $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, users.username
                  FROM posts
                  LEFT JOIN users
@@ -83,7 +84,7 @@ function postComments($pdo) {
 
 
   $statement = $pdo->prepare($postComments);
-  $postID = $_SESSION['posts']['postID'];
+  $postID = (int)$_SESSION['posts']['postID'];
 
   $statement->execute();
 
@@ -99,15 +100,18 @@ function postComments($pdo) {
 
 
 function editPosts($pdo) {
-  $postID = $_SESSION['posts']['postID'];
-  $editPosts = "SELECT * FROM posts WHERE postID= :postID";
+
+  $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
+                   FROM posts
+                   LEFT JOIN users
+                   ON posts.userID=users.userID WHERE posts.userID=posts.postID";
 
   $statement = $pdo->prepare($editPosts);
-  $statement->bindParam(':userID', $id, PDO::PARAM_INT);
-
+  $postID = (int)$_SESSION['posts']['postID'];
   $statement->execute();
 
-  $resulteditPosts = $statement->fetch(PDO::FETCH_ASSOC);
+  $resulteditPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 
   return $resulteditPosts;
 }

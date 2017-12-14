@@ -16,10 +16,8 @@
             </p>
             <small></small>
           </blockquote>
-          <?php echo $_SESSION['posts']['postID']; ?><a href="/commentsform.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
-          <?php if (isset($_SESSION['users']['userID'])):?>
-              <a href="/editsubmit.php" class="badge badge-secondary"><p class="mb-0"><small>Edit my submit <?php echo $_SESSION['posts']['postID'] ?></small></p></a>
-          <?php endif; ?>
+          <?php echo $submit['postID']; ?><a href="/commentsform.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+              <a href="/editsubmit.php" class="badge badge-secondary"><p class="mb-0"><small>Edit my submit <?php echo $submit['postID']; ?></small></p></a>
         </div>
       </div>
     <?php endforeach; ?>

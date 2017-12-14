@@ -15,7 +15,7 @@ if (isset($_POST['title'], $_POST['description']) ) {
     die(var_dump($pdo->errorInfo()));
 }
 
-$postID = $_SESSION['posts']['postID'];
+  $postID = $_SESSION['posts']['postID'];
   $userID = $_SESSION['users']['userID'];
 
   $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
