@@ -31,4 +31,5 @@ CLEAR SQ AUTOINCREMENT:
 UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='posts';
 
 
-
+INSERT INTO posts (title, description, url, userID, postdate, postID)
+VALUES (“her”, “apa”, “okej”, 2, 12, 2)

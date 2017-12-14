@@ -1,22 +1,25 @@
 <div class="m-4">
-    <?php $posts = posts($pdo) ?>
-    <?php foreach($posts as $post):?>
+    <?php $submits = posts($pdo) ?>
+    <?php foreach($submits as $submit):?>
       <div class="card col-sm-8 mt-2">
             <div class="card-header pt-1 pb-1">
-              <?php echo $post['title'];?>
+              <?php echo $submit['title'];?>
             </div>
             <div class="card-body pt-1 pb-1">
             <blockquote class="blockquote mb-0">
             <p class="mb-0">
-              <?php echo $post['description']; ?>
+              <?php echo $submit['description']; ?>
             </p>
-            <h5><?php echo $post['url']; ?></h5>
+            <h5><?php echo $submit['url']; ?></h5>
             <p class="mb-0 smallfont">
-              Submitted by: <?php echo $post['username'].' on '.$post['postdate'] ?>
+              Submitted by: <?php echo $submit['username'].' on '.$submit['postdate'] ?>
             </p>
             <small></small>
           </blockquote>
-          <a href="/commentsform.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+          <?php echo $_SESSION['posts']['postID']; ?><a href="/commentsform.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+          <?php if (isset($_SESSION['users']['userID'])):?>
+              <a href="/editsubmit.php" class="badge badge-secondary"><p class="mb-0"><small>Edit my submit <?php echo $_SESSION['posts']['postID'] ?></small></p></a>
+          <?php endif; ?>
         </div>
       </div>
     <?php endforeach; ?>

@@ -61,7 +61,6 @@ function myProfile($pdo) {
 
   $statement = $pdo->prepare($getMyProfile);
 
-
   $statement->bindParam(':userID', $id, PDO::PARAM_INT);
 
   $statement->execute();
@@ -74,15 +73,17 @@ function myProfile($pdo) {
 
 }
 
-// Get posts when inside to comment
+// Get post when inside to comment
 
 function postComments($pdo) {
-  $postComments = "SELECT * FROM posts
-               LEFT JOIN users
-               ON posts.userID=users.userID";
+  $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, users.username
+                   FROM posts
+                   LEFT JOIN users
+                   ON posts.userID=users.userID ";
+
 
   $statement = $pdo->prepare($postComments);
-
+  $postID = $_SESSION['posts']['postID'];
 
   $statement->execute();
 
@@ -97,4 +98,16 @@ function postComments($pdo) {
  }
 
 
- // searching in db if username already exists
+function editPosts($pdo) {
+  $postID = $_SESSION['posts']['postID'];
+  $editPosts = "SELECT * FROM posts WHERE postID= :postID";
+
+  $statement = $pdo->prepare($editPosts);
+  $statement->bindParam(':userID', $id, PDO::PARAM_INT);
+
+  $statement->execute();
+
+  $resulteditPosts = $statement->fetch(PDO::FETCH_ASSOC);
+
+  return $resulteditPosts;
+}

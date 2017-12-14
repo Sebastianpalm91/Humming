@@ -19,7 +19,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
-
+  $post = $statement->fetch(PDO::FETCH_ASSOC);
 
   if (!$user) {
     redirect('/../loginform.php');
@@ -30,7 +30,15 @@ if (isset($_POST['email'], $_POST['password'])) {
       'email' => $user['email'],
       'bio' => $user['bio'],
       'picture' => $user['picture'],
-      'userID' => $user['userID']
+      'userID' => $user['userID'],
+      'postID' => $user['postID']
+    ];
+    $_SESSION['posts'] = [
+      'postID' => $post['postID'],
+      'title' => $post['title'],
+      'description' => $post['description'],
+      'userID' => $post['userID']
+
     ];
 
     unset($user['password']);

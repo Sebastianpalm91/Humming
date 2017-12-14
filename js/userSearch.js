@@ -8,16 +8,16 @@ let searchUsername = () => {
     return response.json()
   })
   .then(response => {
-    for (let user of response) {
-      console.log(searchUser+" == "+user.username)
-      if (searchUser == user.username) {
+    console.log(response)
+      if (response.length && searchUser === response[0].username) {
         console.log("if")
         alreadyExists.textContent = "Username already exists"
       }
       else {
+        console.log("else")
+
         alreadyExists.textContent = ""
       }
-    }
   })
 }
 searchUserField.addEventListener('keyup', searchUsername);
