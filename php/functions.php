@@ -20,7 +20,6 @@ function posts($pdo) {
                LEFT JOIN users
                ON posts.userID=users.userID
                ORDER BY postID DESC";
-
   $statement = $pdo->prepare($allPosts);
 
   $statement->execute();
@@ -74,17 +73,14 @@ function myProfile($pdo) {
 
 }
 
-// Get post when inside to comment
+// Get specific post when inside to comment
 
-function postComments($pdo) {
-  $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, users.username
-                   FROM posts
-                   LEFT JOIN users
-                   ON posts.userID=users.userID ";
+function postComments($pdo, $postID) {
+  $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username FROM posts LEFT JOIN users ON posts.userID=users.userID WHERE postID = '$postID'" ;
 
 
   $statement = $pdo->prepare($postComments);
-  $postID = (int)$_SESSION['posts']['postID'];
+
 
   $statement->execute();
 
@@ -98,6 +94,23 @@ function postComments($pdo) {
 
  }
 
+ // Get all comments from specific post
+ function allComments($pdo) {
+   $postID = $_GET['id'];
+   $allComments = "SELECT commentID, comment, commentDate, username FROM comments INNER JOIN users ON comments.userID=users.userID WHERE postID = :postID ";
+
+   $statement = $pdo->prepare($allComments);
+   $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
+   $statement->execute();
+
+   $resultallComments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+   if (!$statement) {
+     die(var_dump($pdo->errorInfo()));
+   }
+   return $resultallComments;
+ }
+// SELECT username, comments, commentDate FROM comments INNER JOIN users ON posts.userID=comments.userID WHERE postID = '$postID'"
 
 function editPosts($pdo) {
 

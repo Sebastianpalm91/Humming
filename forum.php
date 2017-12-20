@@ -1,26 +1,40 @@
 <div class="m-4">
-    <?php $submits = posts($pdo) ?>
-    <?php foreach($submits as $submit):?>
-      <div class="card col-sm-8 mt-2">
-            <div class="card-header pt-1 pb-1">
-              <?php echo $submit['title'];?>
-            </div>
-            <div class="card-body pt-1 pb-1">
-            <blockquote class="blockquote mb-0">
-            <p class="mb-0">
-              <?php echo $submit['description']; ?>
-            </p>
-            <h5><?php echo $submit['url']; ?></h5>
-            <p class="mb-0 smallfont">
-              Submitted by: <?php echo $submit['username'].' on '.$submit['postdate'] ?>
-            </p>
-            <small></small>
-          </blockquote>
-          <?php echo $submit['postID']; ?><a href="/commentsform.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
-              <a href="/editsubmit.php" class="badge badge-secondary"><p class="mb-0"><small>Edit my submit <?php echo $submit['postID']; ?></small></p></a>
-        </div>
+  <?php $submits = posts($pdo) ?>
+  <?php foreach($submits as $submit => $value):?>
+    <div class="card col-sm-8 mt-2">
+      <div class="card-header pt-1 pb-1">
+        <?php echo $value['title'];?>
       </div>
-    <?php endforeach; ?>
+      <div class="card-body pt-1 pb-1">
+        <blockquote class="blockquote mb-0">
+          <p class="mb-0">
+            <?php echo $value['description']; ?>
+          </p>
+          <h5><?php echo $value['url']; ?></h5>
+          <p class="mb-0 smallfont">
+            Submitted by: <?php echo $value['username'].' on '.$value['postdate'] ?>
+          </p>
+          <small></small>
+        </blockquote>
+        <?php if (isset($_SESSION['users'])): ?>
+          <div class="row p-0 m-0">
+            <form action="/commentsform.php" method="GET">
+              <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+                <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
+        
+              </button>
+            </form>
+            <form action="/" method="GET">
+              <button class="btn btn-dark text-light m-0 p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+                <a href="/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
+              </button>
+            </form>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+  <?php endforeach; ?>
+
   <nav>
     <ul class="pagination pagination-sm pt-4">
       <li class="page-item">
@@ -41,18 +55,27 @@
     </ul>
   </nav>
   <?php if (isset($_SESSION['users'])): ?>
-    <div class="col-sm-8 p-0 pt-4">
-    <form action="php/postNew.php" method="post">
-      <div class="form-group">
-        <label>New submit</label>
-        <input type="text" class="form-control" name="title">
+    <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link bg-dark text-light" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">New Submit</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="col-sm-8 p-0 pt-4">
+          <form action="php/postNew.php" method="post">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" class="form-control" name="title">
+            </div>
+            <div class="form-group">
+              <label>Text</label>
+              <textarea class="form-control" name="description"rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark btn-sm m-0">Save</button>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1"></label>
-        <textarea class="form-control" name="description"rows="3"></textarea>
-      </div>
-      <button type="submit" class="btn btn-secondary btn-sm p-0 m-0">Save</button>
-    </form>
     </div>
   <?php endif; ?>
 
