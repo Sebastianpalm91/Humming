@@ -30,8 +30,7 @@ if (isset($_POST['email'], $_POST['password'])) {
       'email' => $user['email'],
       'bio' => $user['bio'],
       'picture' => $user['picture'],
-      'userID' => $user['userID'],
-      'postID' => $user['postID']
+      'userID' => $user['userID']
     ];
     $_SESSION['posts'] = [
       'postID' => $post['postID'],

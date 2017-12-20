@@ -12,8 +12,7 @@ require __DIR__.'/viewings/header.php';
     <div class="column">
       <div class="col-md-6 mb-3 pl-0">
         <label>Choose a username</label>
-        <input type="text" name="username" class="form-control searchUser" placeholder="Username" required>
-        <p class="alreadyExists"></p>
+        <input type="text" name="username" class="form-control searchUser" placeholder="Username" required><p class="alreadyExists text-danger"></p>
       </div>
       <div class="col-md-6 mb-3 pl-0">
         <label>Enter a valid email adress</label>
@@ -27,7 +26,7 @@ require __DIR__.'/viewings/header.php';
       </div>
       <div class="col-md-6 mb-3 pl-0">
         <label>Repeat Password...</label>
-        <p>
+        <p class="text-danger">
           <?php if (isset($_SESSION['registerError']['passwordNoMatch'])): echo $_SESSION['registerError']['passwordNoMatch']?>
             <?php unset($_SESSION['registerError']['passwordNoMatch']) ?>
           <?php endif; ?>

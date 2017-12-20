@@ -61,7 +61,7 @@ require __DIR__.'/../viewings/header.php';
               <input type="email" class="form-control" name="email" placeholder="name@example.com">
             </div>
               <div class="form-group">
-                <label>Change vatar</label>
+                <label>Change avatar</label>
                 <input type="file" class="form-control-file" name="picture">
               </div>
             <button class="btn btn-dark mt-4 font-weight-light" type="submit">Save changes</button>
@@ -85,7 +85,11 @@ require __DIR__.'/../viewings/header.php';
                     Submitted by: <?php echo $post['username'].' on '.$post['postdate'] ?>
                   </p>
                 </blockquote>
-                <a href="/comments.php" class="badge badge-secondary"><p class="mb-0"><small>Comments</small></p></a>
+                <form action="/commentsform.php" method="GET">
+                  <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $post['postID'] ?>">
+                    <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
+                  </button>
+                </form>
               </div>
             </div>
           <?php endforeach; ?>

@@ -44,6 +44,7 @@ function myPosts($pdo) {
   $statement = $pdo->prepare($getmyPosts);
   $statement->bindParam(':userID', $id, PDO::PARAM_INT);
 
+
   $statement->execute();
   $resultmyPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -76,6 +77,7 @@ function myProfile($pdo) {
 // Get specific post when inside to comment
 
 function postComments($pdo, $postID) {
+  $postID = $_GET['id'];
   $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username FROM posts LEFT JOIN users ON posts.userID=users.userID WHERE postID = '$postID'" ;
 
 

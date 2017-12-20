@@ -11,7 +11,7 @@ let searchUsername = () => {
     console.log(response)
       if (response.length && searchUser === response[0].username) {
         console.log("if")
-        alreadyExists.textContent = "Username already exists"
+        alreadyExists.textContent = "Did someone take your username before you? sorry, try another one!"
       }
       else {
         console.log("else")

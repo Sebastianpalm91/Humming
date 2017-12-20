@@ -12,7 +12,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['passw
   $passwordVerify = trim(filter_var($_POST['passwordVerify'], FILTER_SANITIZE_STRING));
 
   if ($password !== $passwordVerify) {
-    $_SESSION['registerError']['passwordNoMatch'] = "Password dosent match";
+    $_SESSION['registerError']['passwordNoMatch'] = "Oops... the password dosent match, lets try again!";
     redirect('/../registerform.php');
     exit;
   }

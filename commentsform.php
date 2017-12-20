@@ -29,10 +29,9 @@ require __DIR__.'/viewings/header.php';
 <?php $allComments = allComments($pdo) ?>
 <?php foreach ($allComments as $comment):?>
   <div class="card col-sm-8 mt-2">
-      <p class="mb-0 smallfont"> Written by: <?php echo $comment['username']; ?> </p>
   <blockquote class="blockquote mb-0">
     <p class="mb-0"><?php echo $comment['comment']; ?></p>
-    <p class="mb-0 smallfont"> Commented on: <?php echo $comment['commentDate']; ?></p>
+    <p class="mb-0 smallfont"> Commented on: <?php echo $comment['commentDate']?>, by: <?php echo $comment['username']; ?></p>
   </blockquote>
 </div>
 <?php endforeach; ?>

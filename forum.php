@@ -21,7 +21,6 @@
             <form action="/commentsform.php" method="GET">
               <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
                 <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
-        
               </button>
             </form>
             <form action="/" method="GET">
@@ -78,5 +77,10 @@
       </div>
     </div>
   <?php endif; ?>
-
+  <?php if (!isset($_SESSION['users'])): ?>
+    <label>Want to comment or post a submit?</label><br>
+    <button class="btn btn-dark text-light">
+    <a href="/registerform.php"><p class="m-0 text-light">Click here to register!</p></a>
+  </button>
+<?php endif; ?>
 </div>
