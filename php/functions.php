@@ -16,12 +16,12 @@ if (!function_exists('redirect')) {
 }
 // make function for getting all the posts
 function posts($pdo) {
-  $allPosts = "SELECT * FROM posts
+  $allPosts = "SELECT *
+               FROM posts
                LEFT JOIN users
                ON posts.userID=users.userID
                ORDER BY postID DESC";
   $statement = $pdo->prepare($allPosts);
-
   $statement->execute();
   $resultPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -32,7 +32,6 @@ function posts($pdo) {
 }
 // make function for joining the table posts with username in users
 function myPosts($pdo) {
-// SELECT posts.title, posts.url, posts.postdate, posts.description, users.username FROM posts LEFT JOIN users ON posts.postID=users.userID WHERE userID= :userID
   $id = (int)$_SESSION['users']['userID'];
   $postID = (int)$_SESSION['posts']['postID'];
   $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, users.username
@@ -43,8 +42,6 @@ function myPosts($pdo) {
                  ORDER BY posts.postID DESC;";
   $statement = $pdo->prepare($getmyPosts);
   $statement->bindParam(':userID', $id, PDO::PARAM_INT);
-
-
   $statement->execute();
   $resultmyPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -59,13 +56,9 @@ function myProfile($pdo) {
   $id = (int)$_SESSION['users']['userID'];
   $getMyProfile = "SELECT * FROM users
                    WHERE userID= :userID";
-
   $statement = $pdo->prepare($getMyProfile);
-
   $statement->bindParam(':userID', $id, PDO::PARAM_INT);
-
   $statement->execute();
-
   $resultGetMyProfile = $statement->fetchALL(PDO::FETCH_ASSOC);
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));
@@ -78,29 +71,28 @@ function myProfile($pdo) {
 
 function postComments($pdo, $postID) {
   $postID = $_GET['id'];
-  $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username FROM posts LEFT JOIN users ON posts.userID=users.userID WHERE postID = '$postID'" ;
-
-
+  $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
+                   FROM posts
+                   LEFT JOIN users
+                   ON posts.userID=users.userID
+                   WHERE postID = '$postID'" ;
   $statement = $pdo->prepare($postComments);
-
-
   $statement->execute();
-
   $resultpostComment = $statement->fetchAll(PDO::FETCH_ASSOC);
-
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));
   }
   return $resultpostComment;
-
-
  }
 
  // Get all comments from specific post
  function allComments($pdo) {
    $postID = $_GET['id'];
-   $allComments = "SELECT commentID, comment, commentDate, username FROM comments INNER JOIN users ON comments.userID=users.userID WHERE postID = :postID ";
-
+   $allComments = "SELECT commentID, comment, commentDate, username
+                   FROM comments
+                   INNER JOIN users
+                   ON comments.userID=users.userID
+                   WHERE postID = :postID ";
    $statement = $pdo->prepare($allComments);
    $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
    $statement->execute();
@@ -116,7 +108,11 @@ function postComments($pdo, $postID) {
 
 function editPosts($pdo) {
   $postID = $_GET['id'];
-  $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username FROM posts LEFT JOIN users ON posts.userID=users.userID WHERE postID = '$postID'";
+  $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
+                FROM posts
+                LEFT JOIN users
+                ON posts.userID=users.userID
+                WHERE postID = '$postID'";
   $statement = $pdo->prepare($editPosts);
   $statement->execute();
   $resulteditPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -129,7 +125,6 @@ function editPosts($pdo) {
 // Get user profile from the $submits
 function userProfile($pdo) {
   $userID = $_GET['id'];
-
   $statement = $pdo->prepare("SELECT userID, username, email, bio, picture FROM users WHERE userID = :userID");
   $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
   $statement->execute();

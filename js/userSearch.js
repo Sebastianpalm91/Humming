@@ -17,8 +17,8 @@ let searchUsername = () => {
       }
       else {
         console.log("else")
-        alreadyExists.textContent = ""
         avaliableUsername.textContent = "This username is avaliable!"
+        alreadyExists.textContent = ""
       }
   })
 }

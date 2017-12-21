@@ -2,21 +2,25 @@
   <?php $submits = posts($pdo) ?>
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2">
-      <div class="card-header pt-1 pb-1">
-        <?php echo $value['title'];?>
-      </div>
-      <div class="card-body pt-1 pb-1">
-        <blockquote class="blockquote mb-0">
-          <p class="mb-0">
-            <?php echo $value['description']; ?>
-          </p>
-          <h5><?php echo $value['url']; ?></h5>
+
+      <div class="card-body pl-0 pt-1 pb-1">
+        <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
+          <?php echo "../profileImages/".$value['picture']; ?>
+        <?php else: echo "../profileImages/hummingLogo.png"; ?>
+        <?php endif; ?>" alt="">
+        <blockquote class="blockquote mb-0 ml-4 pl-4 ">
+            <form action="/commentsform.php" method="GET">
+              <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
+                <a href="/commentsform.php"><p class="m-0"><?php echo $value['title'];?></p></a>
+              </button>
+            </form>
+          <h5 class="m-0"><?php echo $value['url']; ?></h5>
           <p class="mb-0 smallfont">
-            Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
+              Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
           </p>
         </blockquote>
         <?php if (isset($_SESSION['users'])): ?>
-          <div class="row p-0 m-0">
+          <div class="row p-0 m-0 ml-5">
             <form action="/commentsform.php" method="GET">
               <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
                 <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
