@@ -69,26 +69,26 @@ function myProfile($pdo) {
 
 // Get specific post when inside to comment
 
-function postComments($pdo, $postID) {
+function clickedPosts($pdo, $postID) {
   $postID = $_GET['id'];
-  $postComments = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
+  $clickedPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID
                    FROM posts
                    LEFT JOIN users
                    ON posts.userID=users.userID
                    WHERE postID = '$postID'" ;
-  $statement = $pdo->prepare($postComments);
+  $statement = $pdo->prepare($clickedPosts);
   $statement->execute();
-  $resultpostComment = $statement->fetchAll(PDO::FETCH_ASSOC);
+  $resultclickedPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));
   }
-  return $resultpostComment;
+  return $resultclickedPosts;
  }
 
  // Get all comments from specific post
  function allComments($pdo) {
    $postID = $_GET['id'];
-   $allComments = "SELECT commentID, comment, commentDate, username
+   $allComments = "SELECT commentID, comment, commentDate, username, users.userID
                    FROM comments
                    INNER JOIN users
                    ON comments.userID=users.userID
