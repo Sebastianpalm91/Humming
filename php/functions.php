@@ -115,17 +115,32 @@ function postComments($pdo, $postID) {
 // SELECT username, comments, commentDate FROM comments INNER JOIN users ON posts.userID=comments.userID WHERE postID = '$postID'"
 
 function editPosts($pdo) {
-
   $postID = $_GET['id'];
   $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username FROM posts LEFT JOIN users ON posts.userID=users.userID WHERE postID = '$postID'";
   $statement = $pdo->prepare($editPosts);
-
-
-
   $statement->execute();
   $resulteditPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
-
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $resulteditPosts;
 }
+
+// Get user profile from the $submits
+function userProfile($pdo) {
+  $userID = $_GET['id'];
+
+  $statement = $pdo->prepare("SELECT userID, username, email, bio, picture FROM users WHERE userID = :userID");
+  $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
+  $statement->execute();
+  $userProfile = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $userProfile;
+
+}
+
+// $userPosts = $pdo->prepare("SELECT * FROM posts WHERE userID = '$userID'");
+// $userPosts2 = $userPosts->fetchAll(PDO::FETCH_ASSOC);
+// $statement->execute();

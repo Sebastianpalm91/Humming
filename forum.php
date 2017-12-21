@@ -12,7 +12,7 @@
           </p>
           <h5><?php echo $value['url']; ?></h5>
           <p class="mb-0 smallfont">
-            Submitted by: <?php echo $value['username'].' on '.$value['postdate'] ?>
+            Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
           </p>
         </blockquote>
         <?php if (isset($_SESSION['users'])): ?>

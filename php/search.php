@@ -15,6 +15,10 @@ $searchUser = "SELECT username FROM users
 $statement = $pdo->prepare($searchUser);
 $statement->bindParam(':username', $name, PDO::PARAM_STR);
 
+if (!$statement) {
+  die(var_dump($pdo->errorInfo()));
+}
+
 $statement->execute();
 
 $resultsearchUser = $statement->fetchALL(PDO::FETCH_ASSOC);

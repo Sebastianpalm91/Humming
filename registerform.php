@@ -11,8 +11,8 @@ require __DIR__.'/viewings/header.php';
   <form action="/user/register.php" method="post" class="d-flex justify-content-center flex-column">
     <div class="column">
       <div class="col-md-6 mb-3 pl-0">
-        <label>Choose a username</label>
-        <input type="text" name="username" class="form-control searchUser" placeholder="Username" required><p class="alreadyExists text-danger"></p>
+        <label>Choose a username</label><p class="alreadyExists text-danger mb-1 m-0"></p><p class="avaliableUsername text-success mb-1 m-0"></p>
+        <input type="text" name="username" class="form-control searchUser" placeholder="Username" required>
       </div>
       <div class="col-md-6 mb-3 pl-0">
         <label>Enter a valid email adress</label>
