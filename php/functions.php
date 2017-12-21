@@ -116,16 +116,15 @@ function postComments($pdo, $postID) {
 
 function editPosts($pdo) {
 
-  $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
-                   FROM posts
-                   LEFT JOIN users
-                   ON posts.userID=users.userID WHERE posts.userID=posts.postID";
-
+  $postID = $_GET['id'];
+  $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username FROM posts LEFT JOIN users ON posts.userID=users.userID WHERE postID = '$postID'";
   $statement = $pdo->prepare($editPosts);
-  $postID = (int)$_SESSION['posts']['postID'];
-  $statement->execute();
 
+
+
+  $statement->execute();
   $resulteditPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 
 
   return $resulteditPosts;

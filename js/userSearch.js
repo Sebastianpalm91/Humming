@@ -9,7 +9,7 @@ let searchUsername = () => {
   })
   .then(response => {
     console.log(response)
-      if (response.length && searchUser === response[0].username) {
+      if (response.length && searchUser.toLowerCase() === response[0].username.toLowerCase()) {
         console.log("if")
         alreadyExists.textContent = "Did someone take your username before you? sorry, try another one!"
       }

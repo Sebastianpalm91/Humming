@@ -51,7 +51,6 @@ require __DIR__.'/../viewings/header.php';
               <label class="font-weight-light" for="username">New username</label>
               <input type="text" class="form-control" name="username">
             </div>
-
             <div class="form-group">
               <label class="font-weight-light" for="bio">New bio</label>
               <textarea class="form-control" name="bio" rows="3"></textarea>
@@ -95,7 +94,9 @@ require __DIR__.'/../viewings/header.php';
           <?php endforeach; ?>
         </div>
         <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
-          <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>"><button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button></a>
+          <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>">
+            <button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button>
+          </a>
         </div>
         <div class="tab-pane fade" id="v-pills-changepass" role="tab" aria-labelledby="v-pills-changepass-tab">
           <form action="../php/changePass.php" method="post" class="col-md-5 pl-0">
