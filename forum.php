@@ -2,21 +2,19 @@
   <?php $submits = posts($pdo) ?>
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2">
-
       <div class="card-body pl-0 pt-1 pb-1">
-        <?php // TODO: COUNTINUE ON THE COUNTER BELOW, make loop for the vote counts ?>
         <div class="d-flex flex-column float-right">
-          <form action="/commentsform.php" method="GET">
-            <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-              <a href="/commentsform.php"><img class="upvote" src="images/upvote.png" alt=""></a>
+            <button class="btn btn-link p-0 upvote" type="button" name="upvote" data-dir="1" value="<?php echo $value['postID'] ?>">
+              <img class="upvote" src="images/upvote.png" alt="">
             </button>
-          </form>
-          <p class="counterVotes m-0 p-0">10</p>
-          <form action="/commentsform.php" method="GET">
-            <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-              <a href="/commentsform.php"><img class="downvote" src="images/downvote.png" alt=""></a>
+
+            <?php $voteSum = voteSum($pdo, $value['postID'])?>
+              <p class="voteSum m-0 p-0"> <?php echo $voteSum['score'] ?> </p>
+
+
+            <button class="btn btn-link p-0 downvote" type="button" name="downvote" data-dir="-1" value="<?php echo $value['postID'] ?>">
+              <img class="downvote" src="images/downvote.png" alt="">
             </button>
-          </form>
         </div>
         <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
           <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>

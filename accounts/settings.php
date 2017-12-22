@@ -40,11 +40,15 @@ require __DIR__.'/../viewings/header.php';
                 <p class="mb-0">
                   <small class="font-weight-light"><p>Hello</small> <?php echo $profile['username'];?>!</p>
                   <small class="font-weight-light"><p>About myself</small><br> <?php echo $profile['bio'];?></p>
+                  <?php if (!isset($profile['bio'])): ?>
+                       <p class="smallfont italic mt-0 pt-0"><em>This user hasn't written anything yet</em></p>
+                  <?php endif; ?>
                   <small class="font-weight-light"><p>Email:</small> <?php echo $profile['email'];?></p>
                 </blockquote>
               </div>
             </div>
           <?php endforeach; ?>
+
           <h3 class="mt-5">Change your profile below</h3>
           <form action="/php/changeProfile.php" method="post" enctype="multipart/form-data">
             <div class="form-groupmt-1">
@@ -70,28 +74,60 @@ require __DIR__.'/../viewings/header.php';
           <p>My submits</p>
           <?php $posts = myPosts($pdo) ?>
           <?php foreach($posts as $post):?>
-            <div class="card mt-2">
-              <div class="card-header pt-1 pb-1">
-                <?php echo $post['title'];?>
-              </div>
-              <div class="card-body pt-1 pb-1">
-                <blockquote class="blockquote mb-0">
-                  <p class="mb-0">
-                    <?php echo $post['description']; ?>
-                  </p>
-                  <h5><?php echo $post['url']; ?></h5>
-                  <p class="mb-0 smallfont">
-                    Submitted by: <?php echo $post['username'].' on '.$post['postdate'] ?>
-                  </p>
-                </blockquote>
-                <form action="/commentsform.php" method="GET">
-                  <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                    <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
-                  </button>
-                </form>
-              </div>
-            </div>
-          <?php endforeach; ?>
+              <div class="card col-sm-8 mt-2">
+
+                <div class="card-body pl-0 pt-1 pb-1">
+                  <?php // TODO: COUNTINUE ON THE COUNTER BELOW, make loop for the vote counts ?>
+                  <div class="d-flex flex-column float-right">
+                    <form action="/upvote.php" method="GET">
+                      <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
+                        <a href="/upvote.php"><img class="upvote" src="images/upvote.png" alt=""></a>
+                      </button>
+                    </form>
+                    <p class="counterVotes m-0 p-0">10</p>
+                    <form action="/downvote.php" method="GET">
+                      <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
+                        <a href="/downvote.php"><img class="downvote" src="images/downvote.png" alt=""></a>
+                      </button>
+                    </form>
+                  </div>
+                  <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>">
+                    <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($post['picture'])): ?>
+                    <?php echo "../profileImages/".$post['picture']; ?>
+                    <?php else: echo "../profileImages/hummingLogo.png"; ?>
+                    <?php endif; ?>" alt="">
+                  </a>
+                  <blockquote class="blockquote mb-0 ml-4 pl-4 ">
+                      <form action="/commentsform.php" method="GET">
+                        <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $post['postID'] ?>">
+                          <a href="/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
+                        </button>
+                      </form>
+                    <h5 class="m-0"><?php echo $post['url']; ?></h5>
+                    <p class="mb-0 smallfont">
+                        Submitted by: <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>"><?php echo $post['username']?></a> on <?php echo $post['postdate'] ?>
+                    </p>
+                  </blockquote>
+                  <?php if (isset($_SESSION['users'])): ?>
+                    <div class="row p-0 m-0 ml-5">
+                      <?php if ($post['userID'] === $_SESSION['users']['userID']): ?>
+                        <form action="../editsubmit.php" method="GET">
+                          <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $post['postID'] ?>">
+                            <a href="../editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
+                          </button>
+                        </form>
+                        <form action="../php/deletePost.php" method="GET">
+                          <button class="btn btn-dark text-light m-0 p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
+                          <a href="../php/deletePost.php?id=<?php echo $post['postID'] ?>" class="m-0 text-light smallfont"><p class="mb-0">Delete this submit</p>
+                          </a>
+                          </button>
+                        </form>
+                      <?php endif; ?>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              <?php endforeach; ?>
         </div>
         <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
           <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>">

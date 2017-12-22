@@ -9,5 +9,7 @@
 <script src="/js/userSearch.js"></script>
 <?php endif; ?>
 
+<script src="/js/voteCounter.js"></script>
+
 </body>
 </html>

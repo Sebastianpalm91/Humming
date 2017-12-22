@@ -49,8 +49,7 @@ function voteCounter($pdo) {
 // make function for joining the table posts with username in users
 function myPosts($pdo) {
   $id = (int)$_SESSION['users']['userID'];
-  $postID = (int)$_SESSION['posts']['postID'];
-  $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, users.username
+  $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID
                  FROM posts
                  LEFT JOIN users
                  ON posts.userID=users.userID
@@ -65,7 +64,6 @@ function myPosts($pdo) {
     die(var_dump($pdo->errorInfo()));
   }
 return $resultmyPosts;
-
 }
 // make function for getting the profile info
 function myProfile($pdo) {
@@ -149,6 +147,27 @@ function userProfile($pdo) {
     die(var_dump($pdo->errorInfo()));
   }
   return $userProfile;
+
+}
+
+function voteSum($pdo, $postID) {
+
+  $voteSum =  "SELECT sum(voteDir)
+               AS score
+               FROM votes
+               WHERE postID= :postID";
+
+$statement = $pdo->prepare($voteSum);
+$statement->bindParam(':postID', $postID, PDO::PARAM_INT);
+
+$statement->execute();
+$resultvoteSum = $statement->fetch(PDO::FETCH_ASSOC);
+
+if (!$statement) {
+  die(var_dump($pdo->errorInfo()));
+}
+return $resultvoteSum;
+
 
 }
 
