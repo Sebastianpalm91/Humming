@@ -4,10 +4,26 @@
     <div class="card col-sm-8 mt-2">
 
       <div class="card-body pl-0 pt-1 pb-1">
-        <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
+        <div class="d-flex flex-column float-right">
+
+          <form action="/commentsform.php" method="GET">
+            <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+              <a href="/commentsform.php"><img class="upvote" src="images/upvote.png" alt=""></a>
+            </button>
+          </form>
+          <p class="counterVotes m-0 p-0">10</p>
+          <form action="/commentsform.php" method="GET">
+            <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+              <a href="/commentsform.php"><img class="downvote" src="images/downvote.png" alt=""></a>
+            </button>
+          </form>
+        </div>
+        <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
+          <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
           <?php echo "../profileImages/".$value['picture']; ?>
-        <?php else: echo "../profileImages/hummingLogo.png"; ?>
-        <?php endif; ?>" alt="">
+          <?php else: echo "../profileImages/hummingLogo.png"; ?>
+          <?php endif; ?>" alt="">
+        </a>
         <blockquote class="blockquote mb-0 ml-4 pl-4 ">
             <form action="/commentsform.php" method="GET">
               <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
@@ -19,6 +35,9 @@
               Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
           </p>
         </blockquote>
+        <?php if (!isset($_SESSION['users'])): ?>
+          <div class="pb-3"></div>
+        <?php endif; ?>
         <?php if (isset($_SESSION['users'])): ?>
           <div class="row p-0 m-0 ml-5">
             <form action="/commentsform.php" method="GET">
