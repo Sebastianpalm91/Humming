@@ -30,6 +30,22 @@ function posts($pdo) {
   }
   return $resultPosts;
 }
+//Up/downvote counter
+function voteCounter($pdo) {
+  $postID = $_GET['id'];
+  $voteCounter = "SELECT voteID, postID, userID FROM votes
+                  INNER JOIN users
+                  ON votes.userID=users.userID
+                  WHERE postID = :postID";
+  $statement = $pdo->prepare($voteCounter);
+  $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
+  $statement->execute();
+  $resultvoteCounter = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultmyPosts;
+}
 // make function for joining the table posts with username in users
 function myPosts($pdo) {
   $id = (int)$_SESSION['users']['userID'];
@@ -92,7 +108,7 @@ function clickedPosts($pdo, $postID) {
                    FROM comments
                    INNER JOIN users
                    ON comments.userID=users.userID
-                   WHERE postID = :postID ";
+                   WHERE postID = :postID";
    $statement = $pdo->prepare($allComments);
    $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
    $statement->execute();
