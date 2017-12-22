@@ -4,8 +4,8 @@
     <div class="card col-sm-8 mt-2">
 
       <div class="card-body pl-0 pt-1 pb-1">
+        <?php // TODO: COUNTINUE ON THE COUNTER BELOW, make loop for the vote counts ?>
         <div class="d-flex flex-column float-right">
-
           <form action="/commentsform.php" method="GET">
             <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
               <a href="/commentsform.php"><img class="upvote" src="images/upvote.png" alt=""></a>
@@ -35,9 +35,6 @@
               Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
           </p>
         </blockquote>
-        <?php if (!isset($_SESSION['users'])): ?>
-          <div class="pb-3"></div>
-        <?php endif; ?>
         <?php if (isset($_SESSION['users'])): ?>
           <div class="row p-0 m-0 ml-5">
             <form action="/commentsform.php" method="GET">
@@ -63,7 +60,6 @@
         </div>
       </div>
     <?php endforeach; ?>
-
     <nav>
       <ul class="pagination pagination-sm pt-4">
         <li class="page-item">
