@@ -151,7 +151,6 @@ function userProfile($pdo) {
 }
 
 function voteSum($pdo, $postID) {
-
   $voteSum =  "SELECT sum(voteDir)
                AS score
                FROM votes
@@ -168,8 +167,8 @@ if (!$statement) {
 }
 return $resultvoteSum;
 
-
 }
+
 
 // $userPosts = $pdo->prepare("SELECT * FROM posts WHERE userID = '$userID'");
 // $userPosts2 = $userPosts->fetchAll(PDO::FETCH_ASSOC);

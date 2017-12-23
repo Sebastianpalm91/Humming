@@ -9,7 +9,7 @@
             </button>
 
             <?php $voteSum = voteSum($pdo, $value['postID'])?>
-              <p class="voteSum m-0 p-0"> <?php echo $voteSum['score'] ?> </p>
+            <p class="voteSum m-0 p-0" name="voteSum"> <?php echo $voteSum['score'] ?> </p>
 
 
             <button class="btn btn-link p-0 downvote" type="button" name="downvote" data-dir="-1" value="<?php echo $value['postID'] ?>">

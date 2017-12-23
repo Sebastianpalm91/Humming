@@ -1,44 +1,44 @@
-const upvote = document.querySelectorAll('.upvote');
-const downvote = document.querySelectorAll('.downvote');
-const voteSum = document.querySelectorAll('.voteSum');
+const upvotes = document.querySelectorAll('.upvote');
+const downvotes = document.querySelectorAll('.downvote');
+const voteSums = document.querySelectorAll('.voteSum');
 const url = "../php/vote.php";
 const score = "../php/voteGet.php";
-let voteCounter
+let voteCounter;
 
-Array.from(score).forEach(scoreSum => {
+Array.from(voteSums).forEach(voteSum => {
 fetch(score, {
   method: "POST",
   headers: {"Content-Type": "application/x-www-form-urlencoded"},
   credentials: "include",
-  body: `postID=${upvote.value}`
+  body: `postID=${voteSum.value}`
 })
 .then(response => {
   return response.json()
 })
 .then(voteGet => {
-  console.log(voteGet);
   voteCounter = `${voteGet.score}`
+  console.log(voteSum);
 })
-})
+});
 
-Array.from(upvote).forEach(upVotes => {
-upVotes.addEventListener('click', () => {
+Array.from(upvotes).forEach(upvote => {
+upvote.addEventListener('click', () => {
   fetch(url, {
     method: "POST",
     headers: {"Content-Type": "application/x-www-form-urlencoded"},
     credentials: "include",
-    body: `upVotes=${upVotes.value}&dir=${upVotes.dataset.dir}`
+    body: `upvote=${upvote.value}&dir=${upvote.dataset.dir}`
   })
   .then(response => {
     return response.json()
-  });
-  voteSum.textContent = voteCounter++
-  console.log("voteCounter");
+  })
+  voteSums.textContent = voteCounter++
+  console.log("upvotes");
 })
-})
+});
 
-Array.from(downvote).forEach(downVotes => {
-downVotes.addEventListener('click', () => {
+Array.from(downvotes).forEach(downvote => {
+downvote.addEventListener('click', () => {
   fetch(url, {
     method: "POST",
     headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -48,7 +48,7 @@ downVotes.addEventListener('click', () => {
   .then(response => {
     return response.json()
   })
-  voteSum.textContent = voteCounter--
+  voteSums.textContent = voteCounter--
   console.log("hejdå");
 })
-})
+});
