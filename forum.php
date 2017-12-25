@@ -4,16 +4,15 @@
     <div class="card col-sm-8 mt-2">
       <div class="card-body pl-0 pt-1 pb-1">
         <div class="d-flex flex-column float-right">
-            <button class="btn btn-link p-0 upvote" type="button" name="upvote" data-dir="1" value="<?php echo $value['postID'] ?>">
-              <img class="upvote" src="images/upvote.png" alt="">
+            <button class="cursorPointer btn btn-link p-0 upvote" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
+              <img class="upvotes" src="images/upvote.png" alt="">
             </button>
-
             <?php $voteSum = voteSum($pdo, $value['postID'])?>
-            <p class="voteSum m-0 p-0" name="voteSum"> <?php echo $voteSum['score'] ?> </p>
+            <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
+            <p class="voteSum m-0 p-0" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
 
-
-            <button class="btn btn-link p-0 downvote" type="button" name="downvote" data-dir="-1" value="<?php echo $value['postID'] ?>">
-              <img class="downvote" src="images/downvote.png" alt="">
+            <button class="cursorPointer btn btn-link p-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
+              <img class="downvotes" src="images/downvote.png" alt="">
             </button>
         </div>
         <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">

@@ -1,25 +1,33 @@
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
-const voteSums = document.querySelectorAll('.voteSum');
+const voteSums = document.querySelectorAll('.voteSums');
 const url = "../php/vote.php";
 const score = "../php/voteGet.php";
+// const score = `../php/voteGet.php?postID=${voteSums}`;
 let voteCounter;
-
-Array.from(voteSums).forEach(voteSum => {
+console.log(score);
 fetch(score, {
   method: "POST",
   headers: {"Content-Type": "application/x-www-form-urlencoded"},
   credentials: "include",
-  body: `postID=${voteSum.value}`
+  body: `postID=${voteSums.score}`,
 })
 .then(response => {
   return response.json()
 })
-.then(voteGet => {
-  voteCounter = `${voteGet.score}`
-  console.log(voteSum);
+.then(voteSums => {
+  voteCounter = `${voteSums.value}`
 })
-});
+// Array.from(voteSums).forEach(voteSum => {
+// });
+
+// fetch(score)
+// .then(response => {
+//   return response.json()
+// })
+// .then(response => {
+//   voteCounter = `${response.value}`
+// })
 
 Array.from(upvotes).forEach(upvote => {
 upvote.addEventListener('click', () => {

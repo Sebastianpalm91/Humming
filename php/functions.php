@@ -166,7 +166,6 @@ if (!$statement) {
   die(var_dump($pdo->errorInfo()));
 }
 return $resultvoteSum;
-
 }
 
 
