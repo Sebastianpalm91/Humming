@@ -14,10 +14,10 @@ $statement = $pdo->prepare($voteSum);
 $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
 
 $statement->execute();
-$resultvoteSum = $statement->fetch(PDO::FETCH_ASSOC);
+$score = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!$statement) {
 die(var_dump($pdo->errorInfo()));
 }
 
-echo json_encode($resultvoteSum);
+echo json_encode($score);

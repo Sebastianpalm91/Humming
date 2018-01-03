@@ -33,6 +33,7 @@ if (isset($_POST['upvote'])) {
 $postID = (int)$_POST['upvote'];
 $voteDir = (int)$_POST['dir'];
 $userID = $_SESSION['users']['userID'];
+
 $voteCounter = "INSERT INTO votes (postID, userID, voteDir)
                             VALUES (:postID, :userID, :voteDir)";
 

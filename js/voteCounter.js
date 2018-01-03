@@ -1,33 +1,9 @@
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
-const voteSums = document.querySelectorAll('.voteSums');
+const voteSums = document.querySelector('.voteSums');
 const url = "../php/vote.php";
 const score = "../php/voteGet.php";
-// const score = `../php/voteGet.php?postID=${voteSums}`;
-let voteCounter;
-console.log(score);
-fetch(score, {
-  method: "POST",
-  headers: {"Content-Type": "application/x-www-form-urlencoded"},
-  credentials: "include",
-  body: `postID=${voteSums.score}`,
-})
-.then(response => {
-  return response.json()
-})
-.then(voteSums => {
-  voteCounter = `${voteSums.value}`
-})
-// Array.from(voteSums).forEach(voteSum => {
-// });
 
-// fetch(score)
-// .then(response => {
-//   return response.json()
-// })
-// .then(response => {
-//   voteCounter = `${response.value}`
-// })
 
 Array.from(upvotes).forEach(upvote => {
 upvote.addEventListener('click', () => {
@@ -40,10 +16,31 @@ upvote.addEventListener('click', () => {
   .then(response => {
     return response.json()
   })
-  voteSums.textContent = voteCounter++
-  console.log("upvotes");
 })
 });
+
+
+Array.from(upvotes).forEach(upvote => {
+upvote.addEventListener('click', () => {
+fetch(score, {
+  method: "POST",
+  headers: {"Content-Type": "application/x-www-form-urlencoded"},
+  credentials: "include",
+  body: `postID=${upvote.value}`
+})
+.then(response => {
+  return response.json()
+})
+.then(voteSum => {
+  const postSum = upvote.parentElement.querySelector('.voteSums');
+  postSum.textContent = `${voteSum.score}`;
+  console.log(voteSum.score);
+})
+})
+});
+
+
+
 
 Array.from(downvotes).forEach(downvote => {
 downvote.addEventListener('click', () => {
@@ -56,7 +53,23 @@ downvote.addEventListener('click', () => {
   .then(response => {
     return response.json()
   })
-  voteSums.textContent = voteCounter--
-  console.log("hejdå");
+})
+});
+Array.from(downvotes).forEach(downvote => {
+downvote.addEventListener('click', () => {
+fetch(score, {
+  method: "POST",
+  headers: {"Content-Type": "application/x-www-form-urlencoded"},
+  credentials: "include",
+  body: `postID=${downvote.value}`
+})
+.then(response => {
+  return response.json()
+})
+.then(voteSum => {
+  const postSum = downvote.parentElement.querySelector('.voteSums');
+  postSum.textContent = `${voteSum.score}`;
+  console.log(voteSum.score);
+})
 })
 });

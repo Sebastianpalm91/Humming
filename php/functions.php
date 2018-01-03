@@ -169,6 +169,31 @@ return $resultvoteSum;
 }
 
 
-// $userPosts = $pdo->prepare("SELECT * FROM posts WHERE userID = '$userID'");
-// $userPosts2 = $userPosts->fetchAll(PDO::FETCH_ASSOC);
-// $statement->execute();
+// TODO: Make function so that the user only can vote ones
+if (isset($_POST)) {
+
+function voteCheck($pdo, $userID) {
+  $userID = $_SESSION['users']['userID'];
+$voteCheck = "SELECT userID, voteDir FROM votes WHERE postID= :postID AND userID= :userID";
+
+$statement = $pdo->prepare($voteCheck);
+
+$statement->bindParam(':userID', $userID, PDO::PARAM_INT);
+$statement->bindParam(':postID', $postID, PDO::PARAM_INT);
+
+$statement->execute();
+$resultvoteCheck = $statement->fetchAll(PDO::FETCH_ASSOC);
+if ($resultvoteCheck) {
+  if ($resultvoteCheck[0][0] == $voteDir) {
+    var_dump("Not voted");
+  } else {
+    redirect('/vote.php');
+  }
+}
+
+if (!$statement) {
+  die(var_dump($pdo->errorInfo()));
+}
+  return $resultvoteCheck;
+}
+}

@@ -3,17 +3,20 @@
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2">
       <div class="card-body pl-0 pt-1 pb-1">
+        <?php $voteCheck = voteCheck($pdo, $value['userID']) ?>
+        <form method="POST">
         <div class="d-flex flex-column float-right">
-            <button class="cursorPointer btn btn-link p-0 upvote" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
+            <button class="cursorPointer btn btn-link p-0 upvote mb-1" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
               <img class="upvotes" src="images/upvote.png" alt="">
             </button>
             <?php $voteSum = voteSum($pdo, $value['postID'])?>
             <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
-            <p class="voteSum m-0 p-0" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
+            <p class="voteSums m-0 p-0 pl-1 text-center" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
 
-            <button class="cursorPointer btn btn-link p-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
+            <button class="cursorPointer btn btn-link p-0 m-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
               <img class="downvotes" src="images/downvote.png" alt="">
             </button>
+        </form>
         </div>
         <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
           <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
