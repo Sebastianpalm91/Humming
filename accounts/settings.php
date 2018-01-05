@@ -60,8 +60,8 @@ require __DIR__.'/../viewings/header.php';
               <textarea class="form-control" name="bio" rows="3"></textarea>
             </div>
             <div class="form-group">
-              <label class="font-weight-light" for="email">New email</label>
-              <input type="email" class="form-control" name="email" placeholder="name@example.com">
+              <label class="font-weight-light" for="email">New/old email to confirm</label>
+              <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
             </div>
               <div class="form-group">
                 <label>Change avatar</label>
@@ -129,6 +129,7 @@ require __DIR__.'/../viewings/header.php';
                 </div>
               <?php endforeach; ?>
         </div>
+        <?php // TODO: MAKE DELETE BUTTON WITH A VERIFY POPUP BUTTON verifyDelete?>
         <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
           <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>">
             <button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button>
