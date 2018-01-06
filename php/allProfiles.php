@@ -9,7 +9,7 @@ require __DIR__.'/../viewings/header.php';
     <div class="card mt-2">
       <img class="profilePic" src=" <?php if(isset($value['picture'])): ?>
         <?php echo "../profileImages/".$value['picture']; ?>
-        <?php else: echo "../profileImages/hummingLogo.png"; ?>
+        <?php else: echo "../profileImages/potato.jpg"; ?>
         <?php endif; ?>" alt="">
       <div class="card-body pt-1 pb-1">
         <blockquote class="blockquote mb-0">

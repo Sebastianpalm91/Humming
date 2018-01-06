@@ -13,9 +13,9 @@ upvote.addEventListener('click', () => {
     credentials: "include",
     body: `upvote=${upvote.value}&dir=${upvote.dataset.dir}`
   })
-  .then(response => {
-    return response.json()
-  })
+  // .then(response => {
+  //   return response.json()
+  // })
 })
 });
 
@@ -48,9 +48,9 @@ downvote.addEventListener('click', () => {
     credentials: "include",
     body: `downvote=${downvote.value}&dir=${downvote.dataset.dir}`
   })
-  .then(response => {
-    return response.json()
-  })
+  // .then(response => {
+  //   return response.json()
+  // })
 })
 });
 

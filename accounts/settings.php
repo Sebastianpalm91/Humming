@@ -94,7 +94,7 @@ require __DIR__.'/../viewings/header.php';
                   <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>">
                     <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($post['picture'])): ?>
                     <?php echo "../profileImages/".$post['picture']; ?>
-                    <?php else: echo "../profileImages/hummingLogo.png"; ?>
+                    <?php else: echo "../profileImages/potato.jpg"; ?>
                     <?php endif; ?>" alt="">
                   </a>
                   <blockquote class="blockquote mb-0 ml-4 pl-4 ">

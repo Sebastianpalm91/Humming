@@ -31,3 +31,14 @@
 .cursorPointer {
   cursor: pointer;
 }
+
+ul {
+  list-style-type: none;
+}
+.anchor-color {
+  color: #81c1e9;
+}
+
+.anchor-color:hover {
+  color: #e2e2e2;
+}

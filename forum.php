@@ -1,4 +1,16 @@
 <div class="m-4">
+  <div class="col-sm-8 p-0">
+    <div class="dropdown float-right mb-1 dropdownSize">
+      <button class="btn-sm btn-dark text-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">A-Z</button>
+        <button class="dropdown-item" type="button">Most upvotes</button>
+        <button class="dropdown-item" type="button">Most downvote</button>
+      </div>
+    </div>
+  </div>
   <?php $submits = posts($pdo) ?>
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2">
@@ -18,18 +30,18 @@
         <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
           <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
           <?php echo "../profileImages/".$value['picture']; ?>
-          <?php else: echo "../profileImages/hummingLogo.png"; ?>
+          <?php else: echo "../profileImages/potato.jpg"; ?>
           <?php endif; ?>" alt="">
         </a>
         <blockquote class="blockquote mb-0 ml-4 pl-4 ">
             <form action="/commentsform.php" method="GET">
               <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                <a href="/commentsform.php"><p class="m-0"><?php echo $value['title'];?></p></a>
+                <a class="anchor-color" href="/commentsform.php"><p class="m-0"><?php echo $value['title'];?></p></a>
               </button>
             </form>
           <h5 class="m-0"><?php echo $value['url']; ?></h5>
           <p class="mb-0 smallfont">
-              Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
+              Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
           </p>
         </blockquote>
         <?php if (isset($_SESSION['users'])): ?>

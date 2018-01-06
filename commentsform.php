@@ -11,7 +11,7 @@ require __DIR__.'/viewings/header.php';
   <div class="card-body pl-0 pt-1 pb-1">
     <img class="float-left profilePicSubs mt-4 mr-3 " src=" <?php if(isset($clickedPost['picture'])): ?>
       <?php echo "../profileImages/".$clickedPost['picture']; ?>
-    <?php else: echo "../profileImages/hummingLogo.png"; ?>
+    <?php else: echo "../profileImages/potato.jpg"; ?>
     <?php endif; ?>" alt="">
     <blockquote class="blockquote mb-0 ml-4 pl-4 ">
       <h2 class="border-bottom-1 mb-0 pb-2">
@@ -30,12 +30,18 @@ require __DIR__.'/viewings/header.php';
 <?php endforeach; ?>
 <?php $allComments = allComments($pdo) ?>
 <?php foreach ($allComments as $comment):?>
-  <div class="card col-sm-8 mt-2">
-  <blockquote class="blockquote mb-0">
+  <div class="card col-sm-8 mt-2 mb-1">
+    <div class="card-body pl-0 pt-1 pb-1">
+      <img class="float-left profilePicSubs mt-1 mr-3 " src=" <?php if(isset($clickedPost['picture'])): ?>
+        <?php echo "../profileImages/".$clickedPost['picture']; ?>
+      <?php else: echo "../profileImages/potato.jpg"; ?>
+      <?php endif; ?>" alt="">
+  <blockquote class="blockquote mb-0 ml-4 pl-4 ">
     <p class="mb-0"><?php echo $comment['comment']; ?></p>
     <p class="mb-0 smallfont"> Commented on: <?php echo $comment['commentDate']?>. By: <a href="/php/allProfiles.php?id=<?php echo $comment['userID']?>"><?php echo $comment['username']; ?></a>
     </p>
   </blockquote>
+</div>
 </div>
 <?php endforeach; ?>
 
