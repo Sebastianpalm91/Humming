@@ -1,3 +1,4 @@
+<?php require __DIR__.'/../../viewings/header.php'; ?>
 <div class="m-4">
   <div class="col-sm-8 p-0">
     <div class="dropdown float-right mb-1 dropdownSize">
@@ -6,31 +7,32 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
         <a href="/php/sort/alphabetic.php"><button class="dropdown-item" type="button">A-Z</button></a>
-        <a href="/index.php"><button class="dropdown-item" type="button">Newest</button></a>
+        <a href="../../index.php"><button class="dropdown-item" type="button">Newest</button></a>
         <button class="dropdown-item" type="button">Most upvotes</button>
         <button class="dropdown-item" type="button">Most downvote</button>
       </div>
     </div>
   </div>
-  <?php $submits = posts($pdo) ?>
-  <?php foreach($submits as $submit => $value):?>
+
+  <?php $alphabetics = postsAlphabetic($pdo) ?>
+  <?php foreach($alphabetics as $alphabetic => $value):?>
     <div class="card col-sm-8 mt-2">
       <div class="card-body pl-0 pt-1 pb-1">
         <div class="d-flex flex-column float-right">
             <button class="cursorPointer btn btn-link p-0 upvote mb-1" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
-              <img class="upvotes" src="images/upvote.png" alt="">
+              <img class="upvotes" src="/../../images/upvote.png" alt="">
             </button>
             <?php $voteSum = voteSum($pdo, $value['postID'])?>
             <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
             <p class="voteSums m-0 p-0 pl-1 text-center" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
             <button class="cursorPointer btn btn-link p-0 m-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
-              <img class="downvotes" src="images/downvote.png" alt="">
+              <img class="downvotes" src="/../../images/downvote.png" alt="">
             </button>
         </div>
-        <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
+        <a href="../php/allProfiles.php?id=<?php echo $value['userID']?>">
           <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
-          <?php echo "../profileImages/".$value['picture']; ?>
-          <?php else: echo "../profileImages/potato.jpg"; ?>
+          <?php echo "../../profileImages/".$value['picture']; ?>
+          <?php else: echo "../../profileImages/potato.jpg"; ?>
           <?php endif; ?>" alt="">
         </a>
         <blockquote class="blockquote mb-0 ml-4 pl-4 ">
@@ -119,3 +121,4 @@
       </button>
     <?php endif; ?>
   </div>
+<?php require __DIR__.'/../../viewings/footer.php'; ?>

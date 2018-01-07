@@ -30,6 +30,54 @@ function posts($pdo) {
   }
   return $resultPosts;
 }
+
+// sort by a-z
+function postsAlphabetic($pdo) {
+$alphabetic =  "SELECT * FROM posts
+                LEFT JOIN users
+                ON posts.userID=users.userID
+                ORDER BY title DESC";
+
+$statement = $pdo->prepare($alphabetic);
+$statement->execute();
+$resultAlphabetic = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+if (!$statement) {
+die(var_dump($pdo->errorInfo()));
+}
+return $resultAlphabetic;
+}
+
+// Sort by most upvotes
+function postsUpvotes($pdo) {
+$upVotes =  "SELECT * FROM posts
+                ORDER BY title;";
+
+$statement = $pdo->prepare($upVotes);
+$statement->execute();
+$resultUpvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+if (!$statement) {
+die(var_dump($pdo->errorInfo()));
+}
+return $resultUpvotes;
+}
+
+// sort by most downvotes
+function postsDownvotes($pdo) {
+$downVotes =  "SELECT * FROM posts
+                ORDER BY title;";
+
+$statement = $pdo->prepare($downVotes);
+$statement->execute();
+$resultDownvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+if (!$statement) {
+die(var_dump($pdo->errorInfo()));
+}
+return $resultDownvotes;
+}
+
 //Up/downvote counter
 function voteCounter($pdo) {
   $postID = $_GET['id'];

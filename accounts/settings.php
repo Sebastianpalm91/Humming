@@ -1,13 +1,8 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../viewings/header.php';
-
 ?>
-
 <div class="row ml-1">
-
-
-
   <div class="col-md-2 col-sm-4 mt-5">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active bg-dark text-light mb-1" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
@@ -33,7 +28,7 @@ require __DIR__.'/../viewings/header.php';
           <div class="card mt-2">
             <img class="profilePic" src=" <?php if(isset($profile['picture'])): ?>
             <?php echo "../profileImages/".$profile['picture']; ?>
-          <?php else: echo "../images/potato.jpg"; ?>
+          <?php else: echo "../profileImages/potato.jpg"; ?>
             <?php endif; ?>" alt="">
             <div class="card-body pt-1 pb-1">
               <blockquote class="blockquote mb-0">
@@ -84,7 +79,9 @@ require __DIR__.'/../viewings/header.php';
                         <a href="/upvote.php"><img class="upvote" src="images/upvote.png" alt=""></a>
                       </button>
                     </form>
-                    <p class="counterVotes m-0 p-0">10</p>
+                    <?php $voteSum = voteSum($pdo, $post['postID'])?>
+                    <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
+                    <p class="voteSums m-0 p-0 pl-1 text-center" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
                     <form action="/downvote.php" method="GET">
                       <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
                         <a href="/downvote.php"><img class="downvote" src="images/downvote.png" alt=""></a>
