@@ -19,13 +19,13 @@
   width: 30px;
 }
 .upvote {
-  height: 15px;
-  width: 15px;
+  height: 55px;
+  width: 35px;
 }
 
 .downvote {
-  height: 15px;
-  width: 15px;
+  height: 100px;
+  width: 35px;
 }
 
 .cursorPointer {
@@ -41,4 +41,12 @@ ul {
 
 .anchor-color:hover {
   color: #e2e2e2;
+}
+.voteFlex {
+  height: 60px;
+  width: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
 }

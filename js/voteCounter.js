@@ -33,7 +33,6 @@ fetch(score, {
 .then(voteSum => {
   const postSum = upvote.parentElement.querySelector('.voteSums');
   postSum.textContent = `${voteSum.score}`;
-  console.log(voteSum.score);
 })
 })
 });
@@ -66,7 +65,6 @@ fetch(score, {
 .then(voteSum => {
   const postSum = downvote.parentElement.querySelector('.voteSums');
   postSum.textContent = `${voteSum.score}`;
-  console.log(voteSum.score);
 })
 })
 });
