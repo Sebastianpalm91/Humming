@@ -19,7 +19,6 @@ upvote.addEventListener('click', () => {
 })
 });
 
-
 Array.from(upvotes).forEach(upvote => {
 upvote.addEventListener('click', () => {
 fetch(score, {
@@ -38,7 +37,6 @@ fetch(score, {
 })
 })
 });
-
 
 Array.from(downvotes).forEach(downvote => {
 downvote.addEventListener('click', () => {

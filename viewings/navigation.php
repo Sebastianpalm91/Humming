@@ -17,7 +17,7 @@
       </li> -->
       <?php if (!isset($_SESSION['users'])):?>
         <li class="nav-item">
-          <a href="../loginform.php" class="nav-link">Login</a>
+          <a href="../../loginform.php" class="nav-link">Login</a>
         </li>
       <?php endif; ?>
 

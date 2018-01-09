@@ -7,8 +7,8 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
         <a href="/php/sort/alphabetic.php"><button class="dropdown-item" type="button">A-Z</button></a>
         <a href="/index.php"><button class="dropdown-item" type="button">Newest</button></a>
-        <button class="dropdown-item" type="button">Most upvotes</button>
-        <button class="dropdown-item" type="button">Most downvote</button>
+        <a href="/php/sort/mostUpvote.php"><button class="dropdown-item" type="button">Most upvotes</button></a>
+        <a href="/php/sort/mostDownvote.php"><button class="dropdown-item" type="button">Most downvote</button></a>
       </div>
     </div>
   </div>

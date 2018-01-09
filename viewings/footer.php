@@ -9,7 +9,6 @@
             <a class="anchor-color" href="#">About Humming</a> <br>
           </li>
         </ul>
-
         <ul class="flex-column p-0">
           Contact us
           <li>
@@ -17,7 +16,6 @@
 
           </li>
         </ul>
-
         <ul class="flex-column p-0">
           Donate <3
           <li>
@@ -35,8 +33,6 @@
   <?php if (stripos($_SERVER['REQUEST_URI'], 'registerform')): ?>
     <script src="/js/userSearch.js"></script>
   <?php endif; ?>
-
-  <script src="/js/voteCounter.js"></script>
-
+    <script src="/js/voteCounter.js"></script>
 </body>
 </html>

@@ -14,9 +14,7 @@ if (isset($_POST['email'], $_POST['password'])) {
   }
 
   $statement->bindParam(':email', $email, PDO::PARAM_STR);
-  // $statement->bindParam(':password', $password, PDO::PARAM_STR);
-
-
+  
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
   $post = $statement->fetch(PDO::FETCH_ASSOC);

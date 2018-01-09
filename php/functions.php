@@ -14,6 +14,7 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
 // make function for getting all the posts
 function posts($pdo) {
   $allPosts = "SELECT *
@@ -24,7 +25,6 @@ function posts($pdo) {
   $statement = $pdo->prepare($allPosts);
   $statement->execute();
   $resultPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));
   }
@@ -33,55 +33,51 @@ function posts($pdo) {
 
 // sort by a-z
 function postsAlphabetic($pdo) {
-$alphabetic =  "SELECT * FROM posts
-                LEFT JOIN users
-                ON posts.userID=users.userID
-                ORDER BY title DESC";
-
-$statement = $pdo->prepare($alphabetic);
-$statement->execute();
-$resultAlphabetic = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-if (!$statement) {
-die(var_dump($pdo->errorInfo()));
-}
-return $resultAlphabetic;
+  $alphabetic =  "SELECT * FROM posts
+                  LEFT JOIN users
+                  ON posts.userID=users.userID
+                  ORDER BY title DESC";
+  $statement = $pdo->prepare($alphabetic);
+  $statement->execute();
+  $resultAlphabetic = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultAlphabetic;
 }
 
 // Sort by most upvotes
 function postsUpvotes($pdo) {
-$upVotes =  "SELECT * FROM posts
-                ORDER BY title;";
+  $upVotes =  "SELECT * FROM posts
+               ORDER BY title;";
 
-$statement = $pdo->prepare($upVotes);
-$statement->execute();
-$resultUpvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-if (!$statement) {
-die(var_dump($pdo->errorInfo()));
-}
-return $resultUpvotes;
+  $statement = $pdo->prepare($upVotes);
+  $statement->execute();
+  $resultUpvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultUpvotes;
 }
 
 // sort by most downvotes
 function postsDownvotes($pdo) {
-$downVotes =  "SELECT * FROM posts
-                ORDER BY title;";
-
-$statement = $pdo->prepare($downVotes);
-$statement->execute();
-$resultDownvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-if (!$statement) {
-die(var_dump($pdo->errorInfo()));
-}
-return $resultDownvotes;
+  $downVotes =  "SELECT * FROM posts
+                 ORDER BY title;";
+  $statement = $pdo->prepare($downVotes);
+  $statement->execute();
+  $resultDownvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultDownvotes;
 }
 
 //Up/downvote counter
 function voteCounter($pdo) {
   $postID = $_GET['id'];
-  $voteCounter = "SELECT voteID, postID, userID FROM votes
+  $voteCounter = "SELECT voteID, postID, userID
+                  FROM votes
                   INNER JOIN users
                   ON votes.userID=users.userID
                   WHERE postID = :postID";
@@ -94,6 +90,7 @@ function voteCounter($pdo) {
   }
   return $resultmyPosts;
 }
+
 // make function for joining the table posts with username in users
 function myPosts($pdo) {
   $id = (int)$_SESSION['users']['userID'];
@@ -113,6 +110,7 @@ function myPosts($pdo) {
   }
 return $resultmyPosts;
 }
+
 // make function for getting the profile info
 function myProfile($pdo) {
   $id = (int)$_SESSION['users']['userID'];
@@ -126,11 +124,9 @@ function myProfile($pdo) {
     die(var_dump($pdo->errorInfo()));
   }
   return $resultGetMyProfile;
-
 }
 
 // Get specific post when inside to comment
-
 function clickedPosts($pdo, $postID) {
   $postID = $_GET['id'];
   $clickedPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID
@@ -166,8 +162,8 @@ function clickedPosts($pdo, $postID) {
    }
    return $resultallComments;
  }
-// SELECT username, comments, commentDate FROM comments INNER JOIN users ON posts.userID=comments.userID WHERE postID = '$postID'"
 
+// SELECT username, comments, commentDate FROM comments INNER JOIN users ON posts.userID=comments.userID WHERE postID = '$postID'"
 function editPosts($pdo) {
   $postID = $_GET['id'];
   $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
@@ -187,7 +183,9 @@ function editPosts($pdo) {
 // Get user profile from the $submits
 function userProfile($pdo) {
   $userID = $_GET['id'];
-  $statement = $pdo->prepare("SELECT userID, username, email, bio, picture FROM users WHERE userID = :userID");
+  $statement = $pdo->prepare("SELECT userID, username, email, bio, picture
+                              FROM users
+                              WHERE userID = :userID");
   $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
   $statement->execute();
   $userProfile = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -195,23 +193,20 @@ function userProfile($pdo) {
     die(var_dump($pdo->errorInfo()));
   }
   return $userProfile;
-
 }
 
+// Get total sum of voteDir
 function voteSum($pdo, $postID) {
   $voteSum =  "SELECT sum(voteDir)
                AS score
                FROM votes
                WHERE postID= :postID";
-
-$statement = $pdo->prepare($voteSum);
-$statement->bindParam(':postID', $postID, PDO::PARAM_INT);
-
-$statement->execute();
-$resultvoteSum = $statement->fetch(PDO::FETCH_ASSOC);
-
-if (!$statement) {
-  die(var_dump($pdo->errorInfo()));
-}
-return $resultvoteSum;
+  $statement = $pdo->prepare($voteSum);
+  $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
+  $statement->execute();
+  $resultvoteSum = $statement->fetch(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultvoteSum;
 }
