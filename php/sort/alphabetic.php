@@ -18,13 +18,18 @@
   <?php foreach($alphabetics as $alphabetic => $value):?>
     <div class="card col-sm-8 mt-2">
       <div class="card-body pl-0 pt-1 pb-1">
-        <div class="d-flex flex-column float-right">
+        <div class="float-right voteFlex">
           <button class="cursorPointer btn btn-link p-0 upvote mb-1" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
             <img class="upvotes" src="/../../images/upvote.png" alt="">
           </button>
           <?php $voteSum = voteSum($pdo, $value['postID'])?>
           <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
-          <p class="voteSums m-0 p-0 pl-1 text-center" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
+          <p class="voteSums m-0 p-0 text-center" name="voteSums">
+          <?php if ($voteSum['score'] == null): ?>
+          <?php echo "0"?>
+          <?php else: echo $voteSum['score'] ?>
+          <?php endif; ?>
+          </p>
           <button class="cursorPointer btn btn-link p-0 m-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
             <img class="downvotes" src="/../../images/downvote.png" alt="">
           </button>

@@ -19,12 +19,12 @@
   width: 30px;
 }
 .upvote {
-  height: 55px;
+  height: 40px;
   width: 35px;
 }
 
 .downvote {
-  height: 100px;
+  height: 40px;
   width: 35px;
 }
 
@@ -43,10 +43,21 @@ ul {
   color: #e2e2e2;
 }
 .voteFlex {
-  height: 60px;
-  width: auto;
+  height: 80px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
+}
+.voteSums {
+  font-size: 16px;
+  display: block;
+}
+
+.upVoteRed {
+  color: #EB3324;
+}
+
+.downVoteBlue {
+  color: #4ba0d5;
 }

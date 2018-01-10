@@ -210,3 +210,20 @@ function voteSum($pdo, $postID) {
   }
   return $resultvoteSum;
 }
+
+function voteDir($pdo, $postID) {
+  $userID = $_SESSION['users']['userID'];
+  $voteDir =  "SELECT voteDir
+               FROM votes
+               WHERE postID= :postID
+               AND userID= :userID";
+  $statement = $pdo->prepare($voteDir);
+  $statement->bindParam(':postID', $postID, PDO::PARAM_INT);
+  $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
+  $statement->execute();
+  $resultvoteDir = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultvoteDir;
+}

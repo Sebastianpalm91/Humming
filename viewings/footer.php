@@ -34,5 +34,6 @@
     <script src="/js/userSearch.js"></script>
   <?php endif; ?>
     <script src="/js/voteCounter.js"></script>
+    <script src="/js/voteDirCol.js"></script>
 </body>
 </html>

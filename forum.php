@@ -16,59 +16,87 @@
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2 pr-0">
       <div class="card-body pl-0 pt-1 pb-1">
-        <div class="float-right voteFlex">
-          <button class="cursorPointer btn btn-link p-0 upvote pb-2" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
-            <img class="upvotes" src="images/upvote.png" alt="">
-          </button>
-          <?php $voteSum = voteSum($pdo, $value['postID'])?>
-          <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
-          <p class="voteSums m-0 p-0 text-center" name="voteSums">
-          <?php if ($voteSum['score'] == null): ?>
-          <?php echo "0"?>
-          <?php else: echo $voteSum['score'] ?>
+        <div class="float-right voteFlex mb-1">
+          <?php if (isset($_SESSION['users'])): ?>
+            <button class="cursorPointer btn btn-link p-0 upvote" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
+              <img class="upvotes" src="images/up-arrow.png" alt="">
+            </button>
+          <?php else: ?>
+            <a class="m-0" href="/registerform.php">
+              <button class="cursorPointer btn btn-link p-0 m-0" type="button">
+                <img class="upvotes" src="images/up-arrow.png" alt="">
+              </button>
+            </a>
           <?php endif; ?>
-          </p>
-          <button class="cursorPointer btn btn-link p-0 m-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
-            <img class="downvotes" src="images/downvote.png" alt="">
-          </button>
-        </div>
-        <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
-          <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
-          <?php echo "../profileImages/".$value['picture']; ?>
-          <?php else: echo "../profileImages/potato.jpg"; ?>
-          <?php endif; ?>" alt="">
-        </a>
-        <blockquote class="blockquote mb-0 ml-4 pl-4 ">
+          <?php $voteSum = voteSum($pdo, $value['postID'])?>
+          <?php if (isset($_SESSION['users'])) {
+            $voteDirs = voteDir($pdo, $value['postID']);
+          }?>
+          <p class="voteSums m-0 text-center font-weight-bold
+          <?php if (isset($_SESSION['users'])) {
+            foreach($voteDirs as $voteDir) {
+              if ($voteDir['voteDir'] == 1 ) {
+                echo "upVoteRed";}
+                if ($voteDir['voteDir'] == -1 ) {
+                  echo "downVoteBlue";}
+                }
+              }?>" name="voteSums">
+              <?php if ($voteSum['score'] == null): ?>
+                <?php echo "0"?>
+              <?php else: echo $voteSum['score'] ?>
+              <?php endif; ?>
+            </p>
+            <?php if (isset($_SESSION['users'])): ?>
+              <button class="cursorPointer btn btn-link p-0 m-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
+                <img class="downvotes" src="images/down-arrow.png" alt="">
+              </button>
+            <?php else: ?>
+              <a class="m-0" href="/registerform.php">
+                <button class="cursorPointer btn btn-link p-0" type="button">
+                  <img class="downvotes" src="images/down-arrow.png" alt="">
+                </button>
+              </a>
+            <?php endif; ?>
+          </div>
+          <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
+            <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
+              <?php echo "../profileImages/".$value['picture']; ?>
+            <?php else: echo "../profileImages/potato.jpg"; ?>
+            <?php endif; ?>" alt="">
+          </a>
+          <blockquote class="blockquote mb-0 ml-4 pl-4 ">
             <form action="/commentsform.php" method="GET">
               <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
                 <a class="anchor-color" href="/commentsform.php"><p class="m-0"><?php echo $value['title'];?></p></a>
               </button>
             </form>
-          <h5 class="m-0"><?php echo $value['url']; ?></h5>
-          <p class="mb-0 smallfont">
+            <h5 class="m-0"><?php echo $value['url']; ?></h5>
+            <p class="mb-0 smallfont">
               Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
-          </p>
-        </blockquote>
-        <?php if (isset($_SESSION['users'])): ?>
-          <div class="row p-0 m-0 ml-5">
-            <form action="/commentsform.php" method="GET">
-              <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
-              </button>
-            </form>
-            <?php if ($value['userID'] === $_SESSION['users']['userID']): ?>
-              <form action="/editsubmit.php" method="GET">
-                <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                  <a href="/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
-                </button>
-              </form>
-              <form action="/php/deletePost.php" method="GET">
-                <button class="btn btn-dark text-light m-0 p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                <a href="/php/deletePost.php?id=<?php echo $value['postID'] ?>" class="m-0 text-light smallfont"><p class="mb-0">Delete this submit</p>
-                </a>
-                </button>
-              </form>
-            <?php endif; ?>
+            </p>
+          </blockquote>
+          <?php if (isset($_SESSION['users'])): ?>
+            <div class="d-flex flex-column mt-3">
+              <div class="row p-0 ml-5">
+                <form action="/commentsform.php" method="GET">
+                  <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+                    <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
+                  </button>
+                </form>
+                <?php if ($value['userID'] === $_SESSION['users']['userID']): ?>
+                  <form action="/editsubmit.php" method="GET">
+                    <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+                      <a href="/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
+                    </button>
+                  </form>
+                  <form action="/php/deletePost.php" method="GET">
+                    <button class="btn btn-dark text-light m-0 p-0" type="submit" name="id" value="<?php echo $value['postID'] ?>">
+                      <a href="/php/deletePost.php?id=<?php echo $value['postID'] ?>" class="m-0 text-light smallfont"><p class="mb-0">Delete this submit</p>
+                      </a>
+                    </button>
+                  </form>
+                <?php endif; ?>
+              </div>
             </div>
           <?php endif; ?>
         </div>
