@@ -1,18 +1,21 @@
 <div class="m-4">
+  <?php $submits = posts($pdo) ?>
   <div class="col-sm-8 p-0">
     <div class="dropdown float-right mb-1 dropdownSize">
       <button class="btn-sm btn-dark text-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Sort by
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <a href="/php/sort/alphabetic.php"><button class="dropdown-item" type="button">A-Z</button></a>
+        <form action="/php/sort/alphabeticsort.php" method="post">
+          <input type="hidden" name="alpha">
+          <button class="dropdown-item" type="submit">A-Z</button>
+        </form>
         <a href="/index.php"><button class="dropdown-item" type="button">Newest</button></a>
         <a href="/php/sort/mostUpvote.php"><button class="dropdown-item" type="button">Most upvotes</button></a>
         <a href="/php/sort/mostDownvote.php"><button class="dropdown-item" type="button">Most downvote</button></a>
       </div>
     </div>
   </div>
-  <?php $submits = posts($pdo) ?>
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2 pr-0">
       <div class="card-body pl-0 pt-1 pb-1">

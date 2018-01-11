@@ -20,18 +20,28 @@
       <div class="card-body pl-0 pt-1 pb-1">
         <div class="float-right voteFlex">
           <button class="cursorPointer btn btn-link p-0 upvote mb-1" type="button" name="upvotes" data-dir="1" value="<?php echo $value['postID'] ?>">
-            <img class="upvotes" src="/../../images/upvote.png" alt="">
+            <img class="upvotes" src="/../../images/up-arrow.png" alt="">
           </button>
           <?php $voteSum = voteSum($pdo, $value['postID'])?>
-          <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
-          <p class="voteSums m-0 p-0 text-center" name="voteSums">
-          <?php if ($voteSum['score'] == null): ?>
-          <?php echo "0"?>
-          <?php else: echo $voteSum['score'] ?>
-          <?php endif; ?>
-          </p>
+          <?php if (isset($_SESSION['users'])) {
+            $voteDirs = voteDir($pdo, $value['postID']);
+          }?>
+          <p class="voteSums m-0 text-center font-weight-bold
+          <?php if (isset($_SESSION['users'])) {
+            foreach($voteDirs as $voteDir) {
+              if ($voteDir['voteDir'] == 1 ) {
+                echo "upVoteRed";}
+                if ($voteDir['voteDir'] == -1 ) {
+                  echo "downVoteBlue";}
+                }
+              }?>" name="voteSums">
+              <?php if ($voteSum['score'] == null): ?>
+                <?php echo "0"?>
+              <?php else: echo $voteSum['score'] ?>
+              <?php endif; ?>
+            </p>
           <button class="cursorPointer btn btn-link p-0 m-0 downvote" type="button" name="downvotes" data-dir="-1" value="<?php echo $value['postID'] ?>">
-            <img class="downvotes" src="/../../images/downvote.png" alt="">
+            <img class="downvotes" src="/../../images/down-arrow.png" alt="">
           </button>
         </div>
           <a href="../php/allProfiles.php?id=<?php echo $value['userID']?>">

@@ -29,6 +29,7 @@ function posts($pdo) {
     die(var_dump($pdo->errorInfo()));
   }
   return $resultPosts;
+
 }
 
 // sort by a-z
