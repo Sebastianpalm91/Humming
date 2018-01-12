@@ -48,15 +48,15 @@ require __DIR__.'/../viewings/header.php';
           <form action="/php/changeProfile.php" method="post" enctype="multipart/form-data">
             <div class="form-groupmt-1">
               <label class="font-weight-light" for="username">New username</label>
-              <input type="text" class="form-control" name="username">
+              <input type="text" class="form-control" name="username" value="<?php echo $profile['username'];?>">
             </div>
             <div class="form-group">
               <label class="font-weight-light" for="bio">New bio</label>
-              <textarea class="form-control" name="bio" rows="3"></textarea>
+              <textarea class="form-control" name="bio" rows="3" value="<?php echo $profile['bio'];?>"> </textarea>
             </div>
             <div class="form-group">
               <label class="font-weight-light" for="email">New/old email to confirm</label>
-              <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+              <input type="email" class="form-control" name="email" placeholder="name@example.com" value="<?php echo $profile['email'];?>" required>
             </div>
               <div class="form-group">
                 <label>Change avatar</label>
