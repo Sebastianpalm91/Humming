@@ -147,7 +147,7 @@ function clickedPosts($pdo, $postID) {
  // Get all comments from specific post
  function allComments($pdo) {
    $postID = $_GET['id'];
-   $allComments = "SELECT commentID, comment, commentDate, username, users.userID
+   $allComments = "SELECT commentID, comment, commentDate, username, postID, users.userID
                    FROM comments
                    INNER JOIN users
                    ON comments.userID=users.userID
@@ -164,6 +164,21 @@ function clickedPosts($pdo, $postID) {
    return $resultallComments;
  }
 
+function allReplys($pdo, $commentID) {
+  $reply = "SELECT replyComment, replyDate, username, picture, users.userID
+            FROM reply
+            INNER JOIN users
+            ON reply.userID=users.userID
+            WHERE commentID= '$commentID'";
+  // $reply = "SELECT * FROM reply
+  //           WHERE commentID= '$commentID'";
+
+  $statement = $pdo->prepare($reply);
+  $statement->execute();
+
+  $resultReply = $statement->fetchAll(PDO::FETCH_ASSOC);
+  return $resultReply;
+}
 // SELECT username, comments, commentDate FROM comments INNER JOIN users ON posts.userID=comments.userID WHERE postID = '$postID'"
 function editPosts($pdo) {
   $postID = $_GET['id'];

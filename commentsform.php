@@ -40,9 +40,27 @@ require __DIR__.'/viewings/header.php';
     <p class="mb-0"><?php echo $comment['comment']; ?></p>
     <p class="mb-0 smallfont"> Commented on: <?php echo $comment['commentDate']?>. By: <a href="/php/allProfiles.php?id=<?php echo $comment['userID']?>"><?php echo $comment['username']; ?></a>
     </p>
+    <?php $allReplys = allReplys($pdo, $comment['commentID']) ?>
+    <?php foreach ($allReplys as $key => $value):?>
+      <img class="float-left profilePicSubs mt-1 mr-3 " src=" <?php if(isset($value['picture'])): ?>
+        <?php echo "../profileImages/".$value['picture']; ?>
+      <?php else: echo "../profileImages/potato.jpg"; ?>
+      <?php endif; ?>" alt="">
+      <p class="mb-0"><?php echo $value['replyComment']; ?></p>
+      <p class="mb-0 smallfont">
+        Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['replyDate'] ?>
+      </p>
+    <?php endforeach; ?>
+    <form action="/php/comment/replyComments.php" method="POST">
+      <input type="hidden" name="postID" value="<?php echo $comment['postID']?>">
+      <input type="hidden" name="commentID" value="<?php echo $comment['commentID']?>">
+      <input type="text" name="reply" required>
+      <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="button">Reply</button>
+    </form>
   </blockquote>
 </div>
 </div>
+
 <?php endforeach; ?>
 
 <?php if (isset($_SESSION['users'])): ?>

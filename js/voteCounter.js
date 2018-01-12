@@ -38,7 +38,7 @@ Array.from(upvotes).forEach(upvote => {
           postSum.style.color = "#000000";
         }
       })
-    }, 100);
+    }, 200);
   })
 });
 
@@ -77,6 +77,6 @@ Array.from(downvotes).forEach(downvote => {
         }
 
       })
-    }, 100);
+    }, 200);
   })
 });
