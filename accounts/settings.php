@@ -69,24 +69,14 @@ require __DIR__.'/../viewings/header.php';
           <p>My submits</p>
           <?php $posts = myPosts($pdo) ?>
           <?php foreach($posts as $post):?>
-              <div class="card col-sm-8 mt-2">
+              <div class="card col-sm-12 mt-2">
 
                 <div class="card-body pl-0 pt-1 pb-1">
                   <?php // TODO: COUNTINUE ON THE COUNTER BELOW, make loop for the vote counts ?>
-                  <div class="d-flex flex-column float-right">
-                    <form action="/upvote.php" method="GET">
-                      <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                        <a href="/upvote.php"><img class="upvote" src="images/upvote.png" alt=""></a>
-                      </button>
-                    </form>
+                  <div class="d-flex flex-column float-right voteFlex">
                     <?php $voteSum = voteSum($pdo, $post['postID'])?>
                     <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
                     <p class="voteSums m-0 p-0 pl-1 text-center" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
-                    <form action="/downvote.php" method="GET">
-                      <button class="btn btn-link p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                        <a href="/downvote.php"><img class="downvote" src="images/downvote.png" alt=""></a>
-                      </button>
-                    </form>
                   </div>
                   <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>">
                     <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($post['picture'])): ?>
@@ -94,8 +84,8 @@ require __DIR__.'/../viewings/header.php';
                     <?php else: echo "../profileImages/potato.jpg"; ?>
                     <?php endif; ?>" alt="">
                   </a>
-                  <blockquote class="blockquote mb-0 ml-4 pl-4 ">
-                      <form action="/commentsform.php" method="GET">
+                  <blockquote class="blockquote mb-0 ml-4 pl-4 mr-2">
+                      <form class="col-10 text-truncate pl-0" action="/commentsform.php" method="GET">
                         <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $post['postID'] ?>">
                           <a href="/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
                         </button>

@@ -67,10 +67,10 @@
             <?php else: echo "../profileImages/potato.jpg"; ?>
             <?php endif; ?>" alt="">
           </a>
-          <blockquote class="blockquote mb-0 ml-4 pl-4 ">
-            <form action="/commentsform.php" method="GET">
+          <blockquote class="d-block blockquote mb-0 ml-4 pl-4 ">
+            <form class="col-10 text-truncate pl-0" action="/commentsform.php" method="GET">
               <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                <a class="anchor-color" href="/commentsform.php"><p class="m-0"><?php echo $value['title'];?></p></a>
+                <p class="m-0 anchor-color"><?php echo $value['title'];?></p>
               </button>
             </form>
             <h5 class="m-0"><?php echo $value['url']; ?></h5>

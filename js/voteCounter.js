@@ -28,7 +28,6 @@ Array.from(upvotes).forEach(upvote => {
         return response.json()
       })
       .then(voteSum => {
-        console.log(voteSum.score);
         const postSum = upvote.parentElement.querySelector('.voteSums');
         postSum.textContent = `${voteSum.score}`;
         if (voteSum.voteDir == 1) {
@@ -66,7 +65,6 @@ Array.from(downvotes).forEach(downvote => {
         return response.json()
       })
       .then(voteSum => {
-        console.log(voteSum.score);
         const postSum = downvote.parentElement.querySelector('.voteSums');
         postSum.textContent = `${voteSum.score}`;
         if (voteSum.voteDir == -1) {

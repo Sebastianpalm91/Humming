@@ -16,7 +16,7 @@ require __DIR__.'/../viewings/header.php';
             <p class="mb-0">
               <small class="font-weight-light"><p>Hello, </small> <?php echo $profile['username'];?></p>
               <small class="font-weight-light"><p>About me</small><br><?php echo $profile['bio'];?></p>
-              <?php if (!isset($value['bio'])): ?>
+              <?php if (!isset($profile['bio'])): ?>
                    <p class="smallfont italic mt-0 pt-0"><em>This user hasn't written anything yet</em></p>
               <?php endif; ?>
               <small class="font-weight-light"><p>Email:</small> <?php echo $profile['email'];?></p>
