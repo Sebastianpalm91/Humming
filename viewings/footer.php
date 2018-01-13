@@ -35,5 +35,6 @@
   <?php endif; ?>
     <script src="/js/voteCounter.js"></script>
     <script src="/js/voteDirCol.js"></script>
+    <script src="/js/deleteButton.js"></script>
 </body>
 </html>

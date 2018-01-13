@@ -2,8 +2,9 @@
 declare(strict_types=1);
 require __DIR__.'/../viewings/header.php';
 ?>
-<div class="row ml-1">
-  <div class="col-md-2 col-sm-4 mt-5">
+<div class="pointerEvents">
+<div class="row ml-1 mr-2">
+  <div class="col-md-2 col-sm-4 mt-5 ">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active bg-dark text-light mb-1" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
       <a class="nav-link bg-dark text-light mb-1" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">My submits</a>
@@ -70,9 +71,7 @@ require __DIR__.'/../viewings/header.php';
           <?php $posts = myPosts($pdo) ?>
           <?php foreach($posts as $post):?>
               <div class="card col-sm-12 mt-2">
-
                 <div class="card-body pl-0 pt-1 pb-1">
-                  <?php // TODO: COUNTINUE ON THE COUNTER BELOW, make loop for the vote counts ?>
                   <div class="d-flex flex-column float-right voteFlex">
                     <?php $voteSum = voteSum($pdo, $post['postID'])?>
                     <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
@@ -87,12 +86,12 @@ require __DIR__.'/../viewings/header.php';
                   <blockquote class="blockquote mb-0 ml-4 pl-4 mr-2">
                       <form class="col-10 text-truncate pl-0" action="/commentsform.php" method="GET">
                         <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                          <a href="/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
+                          <a class="anchor-color" href="/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
                         </button>
                       </form>
                     <h5 class="m-0"><?php echo $post['url']; ?></h5>
                     <p class="mb-0 smallfont">
-                        Submitted by: <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>"><?php echo $post['username']?></a> on <?php echo $post['postdate'] ?>
+                        Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $post['userID']?>"><?php echo $post['username']?></a> on <?php echo $post['postdate'] ?>
                     </p>
                   </blockquote>
                   <?php if (isset($_SESSION['users'])): ?>
@@ -116,11 +115,8 @@ require __DIR__.'/../viewings/header.php';
                 </div>
               <?php endforeach; ?>
         </div>
-        <?php // TODO: MAKE DELETE BUTTON WITH A VERIFY POPUP BUTTON verifyDelete?>
         <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
-          <a class="btn-danger" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>">
-            <button type="button" name="delete" class="list-group-item list-group-item-action mt-1">Delete account</button>
-          </a>
+            <button class=" deleteAccount list-group-item list-group-item-action mt-1">Delete account</button>
         </div>
         <div class="tab-pane fade" id="v-pills-changepass" role="tab" aria-labelledby="v-pills-changepass-tab">
           <form action="../php/changePass.php" method="post" class="col-md-5 pl-0">
@@ -132,6 +128,19 @@ require __DIR__.'/../viewings/header.php';
           </form>
         </div>
       </div>
+    </div>
+  </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="deleteConfirm">
+      <p class="text-center text-light pt-2 pb-2 m-0">Are you sure you whant to delete your account?</p>
+        <a class="d-flex justify-content-center" href="/php/delete.php?userID=<?php echo $_SESSION['users']['userID']; ?>">
+          <button class="smallfont m-1 mb-0 btn btn-danger text-light btn-sm m-0 p-0" type="button" name="delete">Delete account</button>
+        </a>
+        <p class="text-center text-light p-0 m-0">or</p>
+        <a class="d-flex justify-content-center">
+        <button class="smallfont m-1 mt-0 cancelDelete btn btn-success btn-sm text-light m-0 p-0" type="button">Cancel this madness</button>
+        </a>
     </div>
   </div>
 

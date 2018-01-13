@@ -1,3 +1,8 @@
+html body {
+  height: 100%;
+  width: 100%;
+}
+
 * {
   font-family: monospace;
 }
@@ -60,4 +65,13 @@ ul {
 
 .downVoteBlue {
   color: #4ba0d5;
+}
+
+.deleteConfirm {
+  height: 150px;
+  width: 250px;
+  background-color: rgba(52, 57, 62, 0.76);
+  border: 1px solid rgba(185, 53, 57, 0.85);
+  z-index: 10;
+  display: none;
 }
