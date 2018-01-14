@@ -20,7 +20,7 @@ require __DIR__.'/viewings/header.php';
       <p class="h6 font-weight-normal mb-1">
         <?php echo $clickedPost['description']  ?>
       </p>
-      <h5 class="m-0"><?php echo $clickedPost['url']; ?></h5>
+      <a class="anchor-color" href="https://<?php echo $clickedPost['url']; ?>"><h6><?php echo $clickedPost['url']; ?></h6></a> 
       <p class="mb-0 smallfont">
         Submitted by: <a href="/php/allProfiles.php?id=<?php echo $clickedPost['userID']?>"><?php echo $clickedPost['username']?></a> on <?php echo $clickedPost['postdate'] ?>
       </p>
