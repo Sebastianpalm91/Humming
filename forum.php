@@ -32,9 +32,9 @@
             </a>
           <?php endif; ?>
           <?php $voteSum = voteSum($pdo, $value['postID'])?>
-          <?php if (isset($_SESSION['users'])) {
-            $voteDirs = voteDir($pdo, $value['postID']);
-          }?>
+          <?php if (isset($_SESSION['users'])): ?>
+          <?php $voteDirs = voteDir($pdo, $value['postID']) ?>
+          <?php endif; ?>
           <p class="voteSums m-0 text-center font-weight-bold
           <?php if (isset($_SESSION['users'])) {
             foreach($voteDirs as $voteDir) {
@@ -73,7 +73,6 @@
                 <p class="m-0 anchor-color"><?php echo $value['title'];?></p>
               </button>
             </form>
-            <h5 class="m-0"><?php echo $value['url']; ?></h5>
             <p class="mb-0 smallfont">
               Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
             </p>
@@ -137,6 +136,10 @@
               <div class="form-group">
                 <label>Title</label>
                 <input type="text" class="form-control" name="title" required>
+              </div>
+              <div class="form-group">
+                <label>Url</label>
+                <input type="text" class="form-control" name="url" required>
               </div>
               <div class="form-group">
                 <label>Text</label>

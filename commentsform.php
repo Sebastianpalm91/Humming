@@ -51,15 +51,26 @@ require __DIR__.'/viewings/header.php';
         Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['replyDate'] ?>
       </p>
     <?php endforeach; ?>
-    <form action="/php/comment/replyComments.php" method="POST">
-      <input type="hidden" name="postID" value="<?php echo $comment['postID']?>">
-      <input type="hidden" name="commentID" value="<?php echo $comment['commentID']?>">
-      <input type="text" name="reply" required>
-      <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="button">Reply</button>
-    </form>
-  </blockquote>
+    <button class="btn btn-dark text-light m-0 p-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <p class="m-0 text-light smallfont">Reply</p>
+    </button>
+    <div class="collapse" id="collapseExample">
+      <form action="/php/comment/replyComments.php" method="POST">
+        <input type="hidden" name="postID" value="<?php echo $comment['postID']?>">
+        <input type="hidden" name="commentID" value="<?php echo $comment['commentID']?>">
+        <textarea class="mt-1" name="reply" rows="2" cols="20" required></textarea>
+        <span></span>
+        <button class="d-flex flex-column btn btn-dark text-light m-0 p-0 mb-1" type="submit" name="button">
+          <p class="m-0 text-light smallfont">Submit</p>
+        </button>
+        </form>
+      </div>
+    </blockquote>
+  </div>
 </div>
-</div>
+
+
+
 
 <?php endforeach; ?>
 

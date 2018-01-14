@@ -1,3 +1,4 @@
+// Score counter on each posts/submits
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
 const voteSums = document.querySelector('.voteSums');

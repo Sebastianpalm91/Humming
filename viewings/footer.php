@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid mt-5 mb-0 bg-dark text-light">
   <div class="container">
-    <div class="col-md-4 col-sm-8 col-sm-10 mx-auto">
+    <div class="col-md-4 col-md-5 col-sm-8 col-sm-10 mx-auto">
       <div class="d-flex justify-content-between">
         <ul class="flex-column p-0">
           About
@@ -35,6 +35,8 @@
   <?php endif; ?>
     <script src="/js/voteCounter.js"></script>
     <script src="/js/voteDirCol.js"></script>
-    <script src="/js/deleteButton.js"></script>
+    <?php if (stripos($_SERVER['REQUEST_URI'], 'deleteAccount')): ?>
+    <script src="/js/deleteAccount.js"></script>
+    <?php endif; ?>
 </body>
 </html>

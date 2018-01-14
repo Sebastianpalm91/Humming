@@ -1,3 +1,4 @@
+// Searching for username avaliability in db
 const searchUserField = document.querySelector('.searchUser');
 const alreadyExists = document.querySelector('.alreadyExists');
 const avaliableUsername = document.querySelector('.avaliableUsername');

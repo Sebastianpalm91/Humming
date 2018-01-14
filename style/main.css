@@ -7,6 +7,15 @@ html body {
   font-family: monospace;
 }
 
+input[type="text"]
+{
+    font-size:14px;
+}
+
+ul {
+  list-style-type: none;
+}
+
 .smallfont {
   font-size: 8px;
 }
@@ -37,9 +46,7 @@ html body {
   cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-}
+
 .anchor-color {
   color: #81c1e9;
 }
@@ -72,6 +79,7 @@ ul {
   width: 250px;
   background-color: rgba(52, 57, 62, 0.76);
   border: 1px solid rgba(185, 53, 57, 0.85);
+  border-radius: 10px;
   z-index: 10;
   display: none;
 }

@@ -29,7 +29,6 @@ function posts($pdo) {
     die(var_dump($pdo->errorInfo()));
   }
   return $resultPosts;
-
 }
 
 // sort by a-z
@@ -164,22 +163,21 @@ function clickedPosts($pdo, $postID) {
    return $resultallComments;
  }
 
+// Get replies posted on specific comments in a speocific post
 function allReplys($pdo, $commentID) {
   $reply = "SELECT replyComment, replyDate, username, picture, users.userID
             FROM reply
             INNER JOIN users
             ON reply.userID=users.userID
             WHERE commentID= '$commentID'";
-  // $reply = "SELECT * FROM reply
-  //           WHERE commentID= '$commentID'";
-
   $statement = $pdo->prepare($reply);
   $statement->execute();
 
   $resultReply = $statement->fetchAll(PDO::FETCH_ASSOC);
   return $resultReply;
 }
-// SELECT username, comments, commentDate FROM comments INNER JOIN users ON posts.userID=comments.userID WHERE postID = '$postID'"
+
+// Editing and selecting specific posts posted by the user logged in
 function editPosts($pdo) {
   $postID = $_GET['id'];
   $editPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username
@@ -227,6 +225,7 @@ function voteSum($pdo, $postID) {
   return $resultvoteSum;
 }
 
+// Get the votes from specific user and on specific post
 function voteDir($pdo, $postID) {
   $userID = $_SESSION['users']['userID'];
   $voteDir =  "SELECT voteDir

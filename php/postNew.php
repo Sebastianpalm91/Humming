@@ -2,8 +2,8 @@
 declare(strict_types=1);
 
 require __DIR__.'/autoload.php';
-if (isset($_POST['title'], $_POST['description']) ) {
-  // $url = filter_var($_POST['url'], FILTER_SANITIZE_STRING);
+if (isset($_POST['title'], $_POST['description'], $_POST['url']) ) {
+  $url         = filter_var($_POST['url'], FILTER_SANITIZE_STRING);
   $title       = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
   $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_STRING));
   $statement   = $pdo->prepare('INSERT INTO posts (title, description, url, userID, postdate, postID)
@@ -19,7 +19,7 @@ if (isset($_POST['title'], $_POST['description']) ) {
   $statement->bindParam(':title',       $title,       PDO::PARAM_STR);
   $statement->bindParam(':description', $description, PDO::PARAM_STR);
   $statement->bindParam(':postdate',    $postdate,    PDO::PARAM_STR);
-  // $statement->bindParam(':url', $url, PDO::PARAM_STR);
+  $statement->bindParam(':url',         $url,         PDO::PARAM_STR);
   $statement->execute();
 }
 redirect('../index.php');

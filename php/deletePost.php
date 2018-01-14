@@ -13,6 +13,4 @@ if (isset($_GET['id'])) {
     die(var_dump($pdo->errorInfo()));
   }
 }
-
-
   redirect('/index.php');
