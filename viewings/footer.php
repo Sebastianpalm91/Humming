@@ -34,7 +34,6 @@
     <script src="/js/userSearch.js"></script>
   <?php endif; ?>
     <script src="/js/voteCounter.js"></script>
-    <script src="/js/voteDirCol.js"></script>
     <?php if (stripos($_SERVER['REQUEST_URI'], 'deleteAccount')): ?>
     <script src="/js/deleteAccount.js"></script>
     <?php endif; ?>

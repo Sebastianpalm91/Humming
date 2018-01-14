@@ -73,7 +73,12 @@ require __DIR__.'/../viewings/header.php';
                   <div class="d-flex flex-column float-right voteFlex">
                     <?php $voteSum = voteSum($pdo, $post['postID'])?>
                     <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
-                    <p class="voteSums m-0 p-0 pl-1 text-center" name="voteSums"> <?php echo $voteSum['score'] ?> </p>
+                    <p class="voteSums m-0 p-0 pl-1 pt-4 text-center" name="voteSums">
+                      <?php if ($voteSum['score'] == null): ?>
+                        <?php echo "0"?>
+                      <?php else: echo $voteSum['score'] ?>
+                      <?php endif; ?>
+                    </p>
                   </div>
                   <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>">
                     <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($post['picture'])): ?>
@@ -87,7 +92,6 @@ require __DIR__.'/../viewings/header.php';
                         <a class="anchor-color" href="/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
                       </button>
                     </form>
-                    <h5 class="m-0"><?php echo $post['url']; ?></h5>
                     <p class="mb-0 smallfont">
                       Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $post['userID']?>"><?php echo $post['username']?></a> on <?php echo $post['postdate'] ?>
                     </p>

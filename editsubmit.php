@@ -2,7 +2,7 @@
 <div class="m-4">
   <?php $editPosts = editPosts($pdo) ?>
   <?php foreach($editPosts as $editPost => $value):?>
-    <div class="card col-sm-8 mt-2 mb-5">
+    <div class="card col-sm-8 mt-2 mb-2">
       <div class="card-body pl-0 pt-1 pb-1">
         <img class="float-left profilePicSubs mt-4 mr-3 " src=" <?php if(isset($value['picture'])): ?>
           <?php echo "../profileImages/".$value['picture']; ?>
@@ -17,7 +17,7 @@
           </p>
           <a class="anchor-color" href="https://<?php echo $value['url']; ?>"><h6><?php echo $value['url']; ?></h6></a>
           <p class="mb-0 smallfont">
-            Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
+            Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['postdate'] ?>
           </p>
         </blockquote>
       </div>
