@@ -8,7 +8,7 @@ require __DIR__.'/../viewings/header.php';
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link active bg-dark text-light mb-1" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
         <a class="nav-link bg-dark text-light mb-1" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">My submits</a>
-        <a class="nav-link bg-dark text-light mb-1" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+        <a class="nav-link bg-dark text-light mb-1" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Account settings</a>
         <a class="nav-link bg-dark text-light mb-1" id="v-pills-changepass-tab" data-toggle="pill" href="#v-pills-changepass" role="tab" aria-controls="v-pills-changepass" aria-selected="false">Change password</a>
       </div>
     </div>
@@ -28,7 +28,7 @@ require __DIR__.'/../viewings/header.php';
             <div class="card mt-2">
               <img class="profilePic" src=" <?php if(isset($profile['picture'])): ?>
                 <?php echo "../profileImages/".$profile['picture']; ?>
-              <?php else: echo "../profileImages/potato.jpg"; ?>
+              <?php else: echo "../images/potato.jpg"; ?>
               <?php endif; ?>" alt="">
               <div class="card-body pt-1 pb-1">
                 <blockquote class="blockquote mb-0">
@@ -43,8 +43,9 @@ require __DIR__.'/../viewings/header.php';
                 </div>
               </div>
             <?php endforeach; ?>
+            <hr class="mt-5 mb-1 m-0">
             <h3 class="mt-5">Change your profile below</h3>
-            <form action="/php/changeProfile.php" method="post" enctype="multipart/form-data">
+            <form action="/php/changeProfile.php" method="post">
               <div class="form-groupmt-1">
                 <label class="font-weight-light" for="username">New username</label>
                 <input type="text" class="form-control" name="username" value="<?php echo $profile['username'];?>">
@@ -57,15 +58,20 @@ require __DIR__.'/../viewings/header.php';
                 <label class="font-weight-light" for="email">New/old email to confirm</label>
                 <input type="email" class="form-control" name="email" placeholder="name@example.com" value="<?php echo $profile['email'];?>" required>
               </div>
-              <div class="form-group">
-                <label>Change avatar</label>
-                <input type="file" class="form-control-file" name="picture">
-              </div>
-              <button class="btn btn-dark mt-4 font-weight-light" type="submit">Save changes</button>
+              <button class="btn btn-dark mt-4 p-1 font-weight-light" type="submit">Save changes</button>
+            </form>
+            <hr class="mt-4 mb-4 m-0">
+            <form action="/php/changeProfile.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label>Change avatar</label>
+              <input type="file" class="form-control-file" name="picture" accept=".jpg, .png">
+              <button class="btn btn-dark mt-4 p-1 font-weight-light" type="submit">Upload</button>
+            </div>
             </form>
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tab" aria-labelledby="v-pills-messages-tab">
-            <p>My submits</p>
+            <h5>My submits</h5>
+            <hr class="mt-2 mb-3 m-0">
             <?php $posts = myPosts($pdo) ?>
             <?php foreach($posts as $post):?>
               <div class="card col-sm-12 mt-2">
@@ -83,7 +89,7 @@ require __DIR__.'/../viewings/header.php';
                   <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>">
                     <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($post['picture'])): ?>
                       <?php echo "../profileImages/".$post['picture']; ?>
-                    <?php else: echo "../profileImages/potato.jpg"; ?>
+                    <?php else: echo "../images/potato.jpg"; ?>
                     <?php endif; ?>" alt="">
                   </a>
                   <blockquote class="blockquote mb-0 ml-4 pl-4 mr-2">
@@ -117,8 +123,12 @@ require __DIR__.'/../viewings/header.php';
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="tab-pane fade col-md-5" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
-            <button class=" deleteAccount list-group-item list-group-item-action mt-1">Delete account</button>
+          <div class="tab-pane fade" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
+            <div class="col-md-12 p-0">
+              <h6>Delete your account and all your posts, votes and comments</h6>
+              <hr class="mt-2 mb-3 m-0">
+            </div>
+            <button class="col-md-5 deleteAccount list-group-item list-group-item-action mt-1">Delete account</button>
           </div>
           <div class="tab-pane fade" id="v-pills-changepass" role="tab" aria-labelledby="v-pills-changepass-tab">
             <form action="../php/changePass.php" method="post" class="col-md-5 pl-0">

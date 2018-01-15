@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid mt-5 mb-0 bg-dark text-light">
+<div class="jumbotron jumbotron-fluid mt-4 mb-0 bg-dark text-light">
   <div class="container">
     <div class="col-md-4 col-md-5 col-sm-8 col-sm-10 mx-auto">
       <div class="d-flex justify-content-between">
@@ -34,7 +34,7 @@
     <script src="/js/userSearch.js"></script>
   <?php endif; ?>
     <script src="/js/voteCounter.js"></script>
-    <?php if (stripos($_SERVER['REQUEST_URI'], 'deleteAccount')): ?>
+    <?php if (stripos($_SERVER['REQUEST_URI'], 'settings')): ?>
     <script src="/js/deleteAccount.js"></script>
     <?php endif; ?>
 </body>

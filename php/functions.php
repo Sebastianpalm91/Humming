@@ -94,7 +94,7 @@ function voteCounter($pdo) {
 // make function for joining the table posts with username in users
 function myPosts($pdo) {
   $id = (int)$_SESSION['users']['userID'];
-  $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID
+  $getmyPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID, users.picture
                  FROM posts
                  LEFT JOIN users
                  ON posts.userID=users.userID
@@ -129,7 +129,7 @@ function myProfile($pdo) {
 // Get specific post when inside to comment
 function clickedPosts($pdo, $postID) {
   $postID = $_GET['id'];
-  $clickedPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID
+  $clickedPosts = "SELECT posts.title, posts.url, posts.postdate, posts.description, posts.postID, users.username, users.userID, users.picture
                    FROM posts
                    LEFT JOIN users
                    ON posts.userID=users.userID

@@ -10,17 +10,20 @@ require __DIR__.'/viewings/header.php';
 <div class="card col-sm-8 mt-2 mb-5">
   <div class="card-body pl-0 pt-1 pb-1">
     <img class="float-left profilePicSubs mt-4 mr-3 " src=" <?php if(isset($clickedPost['picture'])): ?>
-      <?php echo "../profileImages/".$clickedPost['picture']; ?>
-    <?php else: echo "../profileImages/potato.jpg"; ?>
+      <?php echo "/profileImages/".$clickedPost['picture']; ?>
+    <?php else: echo "/profileImages/potato.jpg"; ?>
     <?php endif; ?>" alt="">
     <blockquote class="blockquote mb-0 ml-4 pl-4 ">
-      <h2 class="border-bottom-1 mb-0 pb-2">
+      <h5 class="border-bottom-1 mb-0 pb-2">
         <?php echo $clickedPost['title'];?>
-      </h2>
-      <p class="h6 font-weight-normal mb-1">
-        <?php echo $clickedPost['description']  ?>
+      </h5>
+      <p class="mediumfont mb-1">
+        <?php echo $clickedPost['description'];?>
       </p>
-      <a class="anchor-color" href="https://<?php echo $clickedPost['url']; ?>"><h6><?php echo $clickedPost['url']; ?></h6></a>
+      <p class="mb-0 mediumfont">
+       Link: <a class="anchor-color" href="https://<?php echo $clickedPost['url']; ?>"><?php echo $clickedPost['url']; ?></a>
+       </p>
+       <hr class="mt-1 mb-1 m-0">
       <p class="mb-0 smallfont">
         Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $clickedPost['userID']?>"><?php echo $clickedPost['username']?></a> on <?php echo $clickedPost['postdate'] ?>
       </p>
@@ -34,27 +37,29 @@ require __DIR__.'/viewings/header.php';
     <div class="card-body pl-0 pt-1 pb-1">
       <img class="float-left profilePicSubs mt-1 mr-3 " src=" <?php if(isset($clickedPost['picture'])): ?>
         <?php echo "../profileImages/".$clickedPost['picture']; ?>
-      <?php else: echo "../profileImages/potato.jpg"; ?>
+      <?php else: echo "../images/potato.jpg"; ?>
       <?php endif; ?>" alt="">
   <blockquote class="blockquote mb-0 ml-4 pl-4 ">
     <p class="mb-0"><?php echo $comment['comment']; ?></p>
     <p class="mb-0 smallfont"> Commented on: <?php echo $comment['commentDate']?>. By: <a href="/php/allProfiles.php?id=<?php echo $comment['userID']?>"><?php echo $comment['username']; ?></a>
     </p>
+    <hr class="mt-1 mb-1 m-0">
     <?php $allReplys = allReplys($pdo, $comment['commentID']) ?>
+    <!-- <hr class="vertical"> -->
     <?php foreach ($allReplys as $key => $value):?>
-      <img class="float-left profilePicSubs mt-1 mr-3 " src=" <?php if(isset($value['picture'])): ?>
+      <img class="float-left profilePicSubs mt-1 mr-3 ml-1" src=" <?php if(isset($value['picture'])): ?>
         <?php echo "../profileImages/".$value['picture']; ?>
-      <?php else: echo "../profileImages/potato.jpg"; ?>
+      <?php else: echo "../images/potato.jpg"; ?>
       <?php endif; ?>" alt="">
       <p class="mb-0"><?php echo $value['replyComment']; ?></p>
       <p class="mb-0 smallfont">
-        Submitted by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['replyDate'] ?>
+        Replyed by: <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>"><?php echo $value['username']?></a> on <?php echo $value['replyDate'] ?>
       </p>
     <?php endforeach; ?>
-    <button class="btn btn-dark text-light m-0 p-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="ml-1 btn btn-dark text-light m-0 p-0" type="button" data-toggle="collapse" data-target=".showForm-<?php echo $comment['commentID'] ?>" aria-expanded="false" aria-controls="showForm">
       <p class="m-0 text-light smallfont">Reply</p>
     </button>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse showForm-<?php echo $comment['commentID'] ?>">
       <form action="/php/comment/replyComments.php" method="POST">
         <input type="hidden" name="postID" value="<?php echo $comment['postID']?>">
         <input type="hidden" name="commentID" value="<?php echo $comment['commentID']?>">

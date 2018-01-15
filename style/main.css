@@ -16,8 +16,16 @@ ul {
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .smallfont {
   font-size: 8px;
+}
+
+.mediumfont {
+  font-size: 14px;
 }
 
 .profilePic {
@@ -46,7 +54,6 @@ ul {
   cursor: pointer;
 }
 
-
 .anchor-color {
   color: #81c1e9;
 }
@@ -54,6 +61,15 @@ ul {
 .anchor-color:hover {
   color: #e2e2e2;
 }
+
+/* .vertical {
+  margin: 0px;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0,0,0,.1);
+  position: absolute;
+} */
+
 .voteFlex {
   height: 80px;
   display: flex;

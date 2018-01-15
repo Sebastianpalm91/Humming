@@ -6,13 +6,11 @@
         Sort by
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <form action="/php/sort/alphabeticsort.php" method="post">
+        <form action="/php/sort/alphabetic.php" method="post">
           <input type="hidden" name="alpha">
           <button class="dropdown-item" type="submit">A-Z</button>
         </form>
         <a href="/index.php"><button class="dropdown-item" type="button">Newest</button></a>
-        <a href="/php/sort/mostUpvote.php"><button class="dropdown-item" type="button">Most upvotes</button></a>
-        <a href="/php/sort/mostDownvote.php"><button class="dropdown-item" type="button">Most downvote</button></a>
       </div>
     </div>
   </div>
@@ -64,12 +62,12 @@
           <a href="/php/allProfiles.php?id=<?php echo $value['userID']?>">
             <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($value['picture'])): ?>
               <?php echo "../profileImages/".$value['picture']; ?>
-            <?php else: echo "../profileImages/potato.jpg"; ?>
+            <?php else: echo "../images/potato.jpg"; ?>
             <?php endif; ?>" alt="">
           </a>
-          <blockquote class="d-block blockquote mb-0 ml-4 pl-4 ">
+          <blockquote class="d-block blockquote mb-0 ml-4 pl-4 mt-1">
             <form class="col-10 text-truncate pl-0" action="/commentsform.php" method="GET">
-              <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
+              <button class="btn cursorPointer m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
                 <p class="m-0 anchor-color"><?php echo $value['title'];?></p>
               </button>
             </form>
@@ -78,7 +76,7 @@
             </p>
           </blockquote>
           <?php if (isset($_SESSION['users'])): ?>
-            <div class="d-flex flex-column mt-3">
+            <div class="d-flex flex-column mt-2 align-bottom">
               <div class="row p-0 ml-5">
                 <form action="/commentsform.php" method="GET">
                   <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
@@ -126,7 +124,7 @@
     <?php if (isset($_SESSION['users'])): ?>
       <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link bg-dark text-light" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">New Submit</a>
+          <a class="nav-link bg-dark text-light p-1" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">New Submit</a>
         </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
@@ -145,7 +143,7 @@
                 <label>Text</label>
                 <textarea class="form-control" name="description"rows="3" required></textarea>
               </div>
-              <button type="submit" class="btn btn-dark btn-sm m-0">Save</button>
+              <button type="submit" class="btn btn-dark btn-sm m-0 p-1">Save</button>
             </form>
           </div>
         </div>

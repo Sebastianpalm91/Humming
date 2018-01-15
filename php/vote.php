@@ -25,8 +25,8 @@ if (isset($_POST['upvote'])) {
     $zeroDir = 0;
     $voteCounterUp = "UPDATE votes
                       SET    voteDir = :zero
-                      WHERE  userID= :userID
-                      AND    postID= :postID";
+                      WHERE  userID  = :userID
+                      AND    postID  = :postID";
     $statement = $pdo->prepare($voteCounterUp);
     $statement->bindParam(':userID',  $userID,  PDO::PARAM_INT);
     $statement->bindParam(':zero',    $zeroDir, PDO::PARAM_INT);
@@ -36,8 +36,8 @@ if (isset($_POST['upvote'])) {
     else {
     $voteCounterUp = "UPDATE votes
                       SET    voteDir = :voteDir
-                      WHERE  userID= :userID
-                      AND    postID= :postID";
+                      WHERE  userID  = :userID
+                      AND    postID  = :postID";
     $statement = $pdo->prepare($voteCounterUp);
     $statement->bindParam(':userID',  $userID,  PDO::PARAM_INT);
     $statement->bindParam(':voteDir', $voteDir, PDO::PARAM_INT);
