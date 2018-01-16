@@ -1,5 +1,5 @@
+<img src="https://media.giphy.com/media/d0kgT482JyFEI/giphy.gif" width="100%">
 # Project Title
-
 Cyberlink - project
 
 ## For more information about the requirements and info about the project visit..
