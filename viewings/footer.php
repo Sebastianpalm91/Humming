@@ -37,5 +37,11 @@
     <?php if (stripos($_SERVER['REQUEST_URI'], 'settings')): ?>
     <script src="/js/deleteAccount.js"></script>
     <?php endif; ?>
+    <?php if (stripos($_SERVER['REQUEST_URI'], 'forum')): ?>
+    <script src="/js/deleteSubmit.js"></script>
+    <?php endif; ?>
+    <?php if (stripos($_SERVER['REQUEST_URI'], 'settings')): ?>
+    <script src="/js/deleteSubmit.js"></script>
+    <?php endif; ?>
 </body>
 </html>

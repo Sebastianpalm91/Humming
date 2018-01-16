@@ -24,10 +24,33 @@ if (isset($_POST['username'], $_POST['email'], $_POST['bio'])) {
 }
 
 // Giving the uploaded img the username + the extension of the file
+
 if (isset($_FILES['picture'])) {
+  if (isset($_SESSION['msgSize'])) {
+    unset($_SESSION['msgSize']);
+  }
+  if (isset($_SESSION['msgFormat'])) {
+    unset($_SESSION['msgFormat']);
+  }
+  if (isset($_SESSION['msg1'])) {
+    unset($_SESSION['msg1']);
+  }
   $info      = pathinfo($_FILES['picture']['name']);
   $ext       = $info['extension'];  //get the extension of the file
   $username  = $_SESSION['users']['username'];
+  $fileSize  = floor($_FILES['picture']['size'] / 1000 / 1000);
+  if ($fileSize > 2) {
+    $_SESSION['msgSize'] = "Max size is 5mb, please choose a smaller size picture";
+    redirect('/accounts/settings.php');
+    exit;
+  }
+  $whitelist = ["jpg", "png", "gif", "jpeg"];
+  if(!in_array($ext, $whitelist)) {
+    $_SESSION['msgFormat'] = "Please uploade a valid format (.jpg or .png)";
+    redirect('/accounts/settings.php');
+    exit;
+  }
+  $_SESSION['msg1'] = "Your changes has been made";
   $newname   = $username.'.'.$ext;
   $userID    = (int)$_SESSION['users']['userID'];
   $picture   = filter_var($username.'.'.$ext, FILTER_SANITIZE_STRING);
@@ -43,6 +66,7 @@ if (isset($_FILES['picture'])) {
   if (isset($_FILES['picture'])) {
     move_uploaded_file($_FILES['picture']['tmp_name'], __DIR__.'/../profileImages/'.$newname);
   }
-  $_SESSION['msg1'] = "Your changes has been made";
+
+
   redirect('/accounts/settings.php');
   }

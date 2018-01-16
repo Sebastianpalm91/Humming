@@ -8,11 +8,11 @@ if (isset($_POST['reply'])) {
   $commentID = $_POST['commentID'];
   $newReply = filter_var($_POST['reply'], FILTER_SANITIZE_STRING);
   $userID = $_SESSION['users']['userID'];
+  $replyDate = date("M d, Y: H:i");
 
   $statement = $pdo->prepare("INSERT INTO reply (replyComment, replyDate, commentID, postID, userID)
                               VALUES            (:replyComment, :replyDate, :commentID, :postID, :userID)");
 
-  $commentDate = date("M d, Y: H:i");
 
   if (!$statement) {
     die(var_dump($pdo->errorInfo()));

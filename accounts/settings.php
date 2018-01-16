@@ -46,26 +46,38 @@ require __DIR__.'/../viewings/header.php';
             <hr class="mt-5 mb-1 m-0">
             <h3 class="mt-5">Change your profile below</h3>
             <form action="/php/changeProfile.php" method="post">
-              <div class="form-groupmt-1">
+              <div class="form-group mt-1 mb-2">
                 <label class="font-weight-light" for="username">New username</label>
                 <input type="text" class="form-control" name="username" value="<?php echo $profile['username'];?>">
               </div>
-              <div class="form-group">
+              <div class="form-group mt-2 mb-2">
                 <label class="font-weight-light" for="bio">New bio</label>
                 <textarea class="form-control" name="bio" rows="3" value="<?php echo $profile['bio'];?>"></textarea>
               </div>
-              <div class="form-group">
+              <div class="form-group mt-2">
                 <label class="font-weight-light" for="email">New/old email to confirm</label>
                 <input type="email" class="form-control" name="email" placeholder="name@example.com" value="<?php echo $profile['email'];?>" required>
               </div>
-              <button class="btn btn-dark mt-4 p-1 font-weight-light" type="submit">Save changes</button>
+              <button class="cursorPointer btn btn-dark mt-2 p-1 font-weight-light" type="submit">Save changes</button>
             </form>
             <hr class="mt-4 mb-4 m-0">
             <form action="/php/changeProfile.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label>Change avatar</label>
+              <p class="text-danger">
+                <?php if (isset($_SESSION['msgFormat'])):?>
+                <?php echo $_SESSION['msgFormat'];?>
+                <?php unset($_SESSION['msgFormat']);?>
+                <?php endif; ?>
+              </p>
+              <p class="text-danger">
+                <?php if (isset($_SESSION['msgSize'])):?>
+                <?php echo $_SESSION['msgSize'];?>
+                <?php unset($_SESSION['msgSize']);?>
+                <?php endif; ?>
+              </p>
               <input type="file" class="form-control-file" name="picture" accept=".jpg, .png">
-              <button class="btn btn-dark mt-4 p-1 font-weight-light" type="submit">Upload</button>
+              <button class="cursorPointer btn btn-dark mt-4 p-1 font-weight-light" type="submit">Upload</button>
             </div>
             </form>
           </div>
@@ -110,12 +122,9 @@ require __DIR__.'/../viewings/header.php';
                             <a href="../editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
                           </button>
                         </form>
-                        <form action="../php/deletePost.php" method="GET">
-                          <button class="btn btn-dark text-light m-0 p-0" type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                            <a href="../php/deletePost.php?id=<?php echo $post['postID'] ?>" class="m-0 text-light smallfont"><p class="mb-0">Delete this submit</p>
-                            </a>
-                          </button>
-                        </form>
+                        <button class="deleteSubmit btn btn-dark text-light m-0 p-0">
+                          <a class="m-0 text-light smallfont"><p class="mb-0 p-0">Delete this submit</p></a>
+                        </button>
                       <?php endif; ?>
                     </div>
                   <?php endif; ?>
@@ -125,18 +134,21 @@ require __DIR__.'/../viewings/header.php';
           </div>
           <div class="tab-pane fade" id="v-pills-settings" role="tab" aria-labelledby="v-pills-settings-tab">
             <div class="col-md-12 p-0">
-              <h6>Delete your account and all your posts, votes and comments</h6>
+              <h6>Delete your account and all your posts, votes and comments.</h6>
               <hr class="mt-2 mb-3 m-0">
             </div>
-            <button class="col-md-5 deleteAccount list-group-item list-group-item-action mt-1">Delete account</button>
+            <button class="cursorPointer col-md-5 deleteAccount list-group-item list-group-item-action mt-1">Delete account</button>
           </div>
           <div class="tab-pane fade" id="v-pills-changepass" role="tab" aria-labelledby="v-pills-changepass-tab">
+            <div class="col-md-12 p-0">
+              <h6>Enter password</h6>
+              <hr class="mt-2 mb-3 m-0">
+            </div>
             <form action="../php/changePass.php" method="post" class="col-md-5 pl-0">
               <div class="form-group">
-                <label for="password">New password</label>
                 <input type="password" name="password" class="form-control" placeholder="Password">
               </div>
-              <button type="submit" class="list-group-item list-group-item-action mt-1">Change password</button>
+              <button type="submit" class="cursorPointer list-group-item list-group-item-action mt-1">Change password</button>
             </form>
           </div>
         </div>
@@ -154,5 +166,17 @@ require __DIR__.'/../viewings/header.php';
         <button class="smallfont m-1 mt-0 cancelDelete btn btn-success btn-sm text-light m-0 p-0" type="button">Cancel this madness</button>
       </a>
     </div>
+  </div>
+  <div class="d-flex justify-content-center">
+  <div class="submitConfirm">
+    <p class="text-center text-light pt-2 pb-2 m-0">Are you sure you whant to delete your submit?</p>
+      <a class="d-flex justify-content-center" href="../php/deletePost.php?id=<?php echo $post['postID'] ?>" >
+        <button class="smallfont m-1 mb-0 btn btn-danger text-light btn-sm m-0 p-0" type="button" name="id">Delete this submit</button>
+      </a>
+    <p class="text-center text-light p-0 m-0">or</p>
+    <a class="d-flex justify-content-center">
+      <button class="smallfont m-1 mt-0 cancelSubmit btn btn-success btn-sm text-light m-0 p-0" type="button">Cancel this madness</button>
+    </a>
+  </div>
   </div>
   <?php require __DIR__.'/../viewings/footer.php'; ?>
