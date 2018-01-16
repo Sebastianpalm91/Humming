@@ -26,6 +26,13 @@ Follow below steps to get started.
 
 * **Sebastian Palm**
 
+## Testing done by:
+```
+1, Andreas Nord
+2, Christopther Mattsson
+3, Gabriel Aanesen
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
