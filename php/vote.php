@@ -4,9 +4,9 @@ require __DIR__.'/../php/autoload.php';
 
 // UPVOTE
 if (isset($_POST['upvote'])) {
-  $postID = (int)$_POST['upvote'];
+  $postID  = (int)$_POST['upvote'];
   $voteDir = (int)$_POST['dir'];
-  $userID = $_SESSION['users']['userID'];
+  $userID  = $_SESSION['users']['userID'];
   $voteCheckUp = "SELECT userID, voteDir
                   FROM   votes
                   WHERE  userID= :userID
@@ -59,9 +59,9 @@ if (isset($_POST['upvote'])) {
 
 // DOWNVOTE
 if (isset($_POST['downvote'])) {
-  $postID = (int)$_POST['downvote'];
+  $postID  = (int)$_POST['downvote'];
   $voteDir = (int)$_POST['dir'];
-  $userID = $_SESSION['users']['userID'];
+  $userID  = $_SESSION['users']['userID'];
   $voteCheckDown = "SELECT  userID, voteDir
                     FROM    votes
                     WHERE   userID= :userID

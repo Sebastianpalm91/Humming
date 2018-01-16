@@ -14,7 +14,6 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
-
 // make function for getting all the posts
 function posts($pdo) {
   $allPosts = "SELECT *

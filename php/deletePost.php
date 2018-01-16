@@ -3,7 +3,7 @@ declare(strict_types=1);
 require __DIR__.'/autoload.php';
 
 if (isset($_GET['id'])) {
-  $postID = $_GET['id'];
+  $postID 	  = $_GET['id'];
   $deletePost = "DELETE FROM posts
                  WHERE postID= :postID";
   $statement = $pdo->prepare($deletePost);

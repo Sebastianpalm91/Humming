@@ -4,9 +4,9 @@ declare(strict_types=1);
 require __DIR__.'/../php/autoload.php';
 
 if (isset($_POST['comment'])) {
-  $postID = $_POST['id'];
+  $postID 	  = $_POST['id'];
   $newComment = filter_var($_POST['comment'], FILTER_SANITIZE_STRING);
-  $userID = $_SESSION['users']['userID'];
+  $userID 	  = $_SESSION['users']['userID'];
 
   $statement = $pdo->prepare("INSERT INTO comments (comment, commentDate, postID, userID)
                               VALUES               (:comment, :commentDate, :postID, :userID)");

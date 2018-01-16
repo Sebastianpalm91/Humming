@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__.'/../php/autoload.php';
 
 if (isset($_POST['password'])) {
-  $password = trim(password_hash($_POST['password'], PASSWORD_DEFAULT));
+  $password   = trim(password_hash($_POST['password'], PASSWORD_DEFAULT));
   $changePass = "UPDATE users
                  SET password= :password
                  WHERE userID= :userID";

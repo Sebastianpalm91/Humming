@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../php/autoload.php';
-$postID = $_POST['postID'];
-$userID = $_SESSION['users']['userID'];
+$postID  = $_POST['postID'];
+$userID  = $_SESSION['users']['userID'];
 $voteSum =  "SELECT voteDir, sum(voteDir)
              AS score
              FROM votes

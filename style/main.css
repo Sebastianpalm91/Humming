@@ -7,9 +7,8 @@ html body {
   font-family: monospace;
 }
 
-input[type="text"]
-{
-    font-size:14px;
+input[type="text"] {
+  font-size:14px;
 }
 
 ul {

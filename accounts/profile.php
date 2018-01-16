@@ -8,7 +8,7 @@ require __DIR__.'/../viewings/header.php';
     <div class="col-md-8 mx-auto">
       <div class="card mt-2">
         <img class="profilePic mb-3" src=" <?php if(isset($profile['picture'])): ?>
-          <?php echo "../profileImages/".$profile['picture']; ?>
+        <?php echo "../profileImages/".$profile['picture']; ?>
         <?php else: echo "../images/potato.jpg"; ?>
         <?php endif; ?>" alt="">
         <div class="card-body pt-1 pb-1">
@@ -17,7 +17,7 @@ require __DIR__.'/../viewings/header.php';
               <small class="font-weight-light"><p>Hello, </small> <?php echo $profile['username'];?></p>
               <small class="font-weight-light"><p>About me</small><br><?php echo $profile['bio'];?></p>
               <?php if (!isset($profile['bio'])): ?>
-                   <p class="smallfont italic mt-0 pt-0"><em>This user hasn't written anything yet</em></p>
+              	<p class="smallfont italic mt-0 pt-0"><em>This user hasn't written anything yet</em></p>
               <?php endif; ?>
               <small class="font-weight-light"><p>Email:</small> <?php echo $profile['email'];?></p>
             </blockquote>

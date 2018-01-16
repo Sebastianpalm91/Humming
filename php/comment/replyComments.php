@@ -4,10 +4,10 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['reply'])) {
-  $postID = $_POST['postID'];
+  $postID 	 = $_POST['postID'];
   $commentID = $_POST['commentID'];
-  $newReply = filter_var($_POST['reply'], FILTER_SANITIZE_STRING);
-  $userID = $_SESSION['users']['userID'];
+  $newReply  = filter_var($_POST['reply'], FILTER_SANITIZE_STRING);
+  $userID 	 = $_SESSION['users']['userID'];
   $replyDate = date("M d, Y: H:i");
 
   $statement = $pdo->prepare("INSERT INTO reply (replyComment, replyDate, commentID, postID, userID)

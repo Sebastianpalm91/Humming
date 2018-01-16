@@ -27,7 +27,7 @@ require __DIR__.'/../viewings/header.php';
           <?php foreach($profiles as $profile):?>
             <div class="card mt-2">
               <img class="profilePic" src=" <?php if(isset($profile['picture'])): ?>
-                <?php echo "../profileImages/".$profile['picture']; ?>
+              <?php echo "../profileImages/".$profile['picture']; ?>
               <?php else: echo "../images/potato.jpg"; ?>
               <?php endif; ?>" alt="">
               <div class="card-body pt-1 pb-1">
@@ -90,7 +90,7 @@ require __DIR__.'/../viewings/header.php';
                 <div class="card-body pl-0 pt-1 pb-1">
                   <div class="d-flex flex-column float-right voteFlex">
                     <?php $voteSum = voteSum($pdo, $post['postID'])?>
-                    <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>"> <?php // TODO: OPTIONAL HERE TRYING RESLOVE JSON INTERACTIVE VOTESUM ?>
+                    <input type="hidden" name="score" value="<?php echo $_POST['score'] ?>">
                     <p class="voteSums m-0 p-0 pl-1 pt-4 text-center" name="voteSums">
                       <?php if ($voteSum['score'] == null): ?>
                         <?php echo "0"?>
@@ -100,7 +100,7 @@ require __DIR__.'/../viewings/header.php';
                   </div>
                   <a href="/php/allProfiles.php?id=<?php echo $post['userID']?>">
                     <img class="float-left profilePicSubs mt-3 mr-3 " src=" <?php if(isset($post['picture'])): ?>
-                      <?php echo "../profileImages/".$post['picture']; ?>
+                    <?php echo "../profileImages/".$post['picture']; ?>
                     <?php else: echo "../images/potato.jpg"; ?>
                     <?php endif; ?>" alt="">
                   </a>
@@ -111,7 +111,8 @@ require __DIR__.'/../viewings/header.php';
                       </button>
                     </form>
                     <p class="mb-0 smallfont">
-                      Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $post['userID']?>"><?php echo $post['username']?></a> on <?php echo $post['postdate'] ?>
+                      Submitted by: <a class="anchor-color" href="/php/allProfiles.php?id=<?php echo $post['userID']?>"><?php echo $post['username']?></a>
+					  on <?php echo $post['postdate'] ?>
                     </p>
                   </blockquote>
                   <?php if (isset($_SESSION['users'])): ?>
