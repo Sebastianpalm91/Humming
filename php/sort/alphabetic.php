@@ -65,7 +65,7 @@
             <?php endif; ?>" alt="">
           </a>
           <blockquote class="d-block blockquote mb-0 ml-4 pl-4 mt-1">
-            <form class="col-10 text-truncate pl-0" action="../../commentsform.php" method="GET">
+            <form class="col-10 text-truncate pl-0" action="/php/comment/commentsform.php" method="GET">
               <button class="btn cursorPointer m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
                 <p class="m-0 anchor-color"><?php echo $value['title'];?></p>
               </button>
@@ -77,15 +77,15 @@
           <?php if (isset($_SESSION['users'])): ?>
             <div class="d-flex flex-column mt-2 align-bottom">
               <div class="row p-0 ml-5">
-                <form action="/commentsform.php" method="GET">
+                <form action="/php/comment/commentsform.php" method="GET">
                   <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                    <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
+                    <a href="/php/comment/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
                   </button>
                 </form>
                 <?php if ($value['userID'] === $_SESSION['users']['userID']): ?>
-                  <form action="/editsubmit.php" method="GET">
+                  <form action="/php/editsubmit.php" method="GET">
                     <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                      <a href="/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
+                      <a href="/php/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
                     </button>
                   </form>
                   <form action="/php/deletePost.php" method="GET">
@@ -101,25 +101,6 @@
         </div>
       </div>
     <?php endforeach; ?>
-    <nav>
-      <ul class="pagination pagination-sm pt-4">
-        <li class="page-item">
-          <a class="page-link text-dark" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-        <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-        <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link text-dark" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
     <?php if (isset($_SESSION['users'])): ?>
       <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
         <li class="nav-item">
@@ -129,7 +110,7 @@
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div class="col-sm-8 p-0 pt-4">
-            <form action="php/postNew.php" method="post">
+            <form action="../postNew.php" method="post">
               <div class="form-group">
                 <label>Title</label>
                 <input type="text" class="form-control" name="title" required>
@@ -151,7 +132,8 @@
     <?php if (!isset($_SESSION['users'])): ?>
       <label>Want to comment or post a submit?</label><br>
       <button class="btn btn-dark text-light">
-        <a href="/registerform.php"><p class="m-0 text-light">Click here to register!</p></a>
+        <a href="../../registerform.php"><p class="m-0 text-light">Click here to register!</p></a>
       </button>
     <?php endif; ?>
   </div>
+<?php require __DIR__.'/../../viewings/footer.php'; ?>

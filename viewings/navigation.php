@@ -17,7 +17,7 @@
       </li> -->
       <?php if (!isset($_SESSION['users'])):?>
         <li class="nav-item">
-          <a href="../../loginform.php" class="nav-link">Login</a>
+          <a href="../user/loginform.php" class="nav-link">Login</a>
         </li>
       <?php endif; ?>
 
@@ -29,7 +29,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="../accounts/profile.php">My Profile</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../accounts/settings.php">Settings</a>
+            <a class="dropdown-item" href="/../accounts/settings.php">Settings</a>
           </div>
         </li>
         <?php $userNames = myProfile($pdo) ?>
@@ -39,7 +39,7 @@
       <?php endif; ?>
     <?php if (!isset($_SESSION['users'])):?>
       <li class="nav-item pull-right">
-        <a class="nav-link" href="/registerform.php">Not a member?</a>
+        <a class="nav-link" href="/../user/registerform.php">Not a member?</a>
       </li>
     <?php endif; ?>
   </ul>

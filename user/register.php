@@ -13,7 +13,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['passw
 
   if ($password !== $passwordVerify) {
     $_SESSION['registerError']['passwordNoMatch'] = "Oops... the password dosent match, lets try again!";
-    redirect('/../registerform.php');
+    redirect('./registerform.php');
     exit;
   }
 
@@ -36,4 +36,4 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['passw
   }
 
 }
-redirect('/../loginform.php');
+redirect('./loginform.php');

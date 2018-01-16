@@ -1,6 +1,6 @@
 <div class="m-4">
   <?php $submits = posts($pdo) ?>
-  <div class="col-sm-8 p-0">
+  <!-- <div class="col-sm-8 p-0">
     <div class="dropdown float-right mb-1 dropdownSize">
       <button class="btn-sm btn-dark text-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Sort by
@@ -13,7 +13,7 @@
         <a href="/index.php"><button class="dropdown-item" type="button">Newest</button></a>
       </div>
     </div>
-  </div>
+  </div> -->
   <?php foreach($submits as $submit => $value):?>
     <div class="card col-sm-8 mt-2 pr-0">
       <div class="card-body pl-0 pt-1 pb-1">
@@ -23,7 +23,7 @@
               <img class="upvotes" src="images/up-arrow.png" alt="">
             </button>
           <?php else: ?>
-            <a class="m-0" href="/registerform.php">
+            <a class="m-0" href="/user/registerform.php">
               <button class="cursorPointer btn btn-link p-0 m-0" type="button">
                 <img class="upvotes" src="images/up-arrow.png" alt="">
               </button>
@@ -52,7 +52,7 @@
                 <img class="downvotes" src="images/down-arrow.png" alt="">
               </button>
             <?php else: ?>
-              <a class="m-0" href="/registerform.php">
+              <a class="m-0" href="/user/registerform.php">
                 <button class="cursorPointer btn btn-link p-0" type="button">
                   <img class="downvotes" src="images/down-arrow.png" alt="">
                 </button>
@@ -66,7 +66,7 @@
             <?php endif; ?>" alt="">
           </a>
           <blockquote class="d-block blockquote mb-0 ml-4 pl-4 mt-1">
-            <form class="col-10 text-truncate pl-0" action="/commentsform.php" method="GET">
+            <form class="col-10 text-truncate pl-0" action="/php/comment/commentsform.php" method="GET">
               <button class="btn cursorPointer m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $value['postID'] ?>">
                 <p class="m-0 anchor-color"><?php echo $value['title'];?></p>
               </button>
@@ -78,15 +78,15 @@
           <?php if (isset($_SESSION['users'])): ?>
             <div class="d-flex flex-column mt-2 align-bottom">
               <div class="row p-0 ml-5">
-                <form action="/commentsform.php" method="GET">
+                <form action="/php/comment/commentsform.php" method="GET">
                   <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                    <a href="/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
+                    <a href="/php/comment/commentsform.php"><p class="m-0 text-light smallfont">Comments</p></a>
                   </button>
                 </form>
                 <?php if ($value['userID'] === $_SESSION['users']['userID']): ?>
-                  <form action="/editsubmit.php" method="GET">
+                  <form action="/php/editsubmit.php" method="GET">
                     <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $value['postID'] ?>">
-                      <a href="/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
+                      <a href="/php/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
                     </button>
                   </form>
                   <form action="/php/deletePost.php" method="GET">
@@ -133,7 +133,7 @@
     <?php if (!isset($_SESSION['users'])): ?>
       <label>Want to comment or post a submit?</label><br>
       <button class="btn btn-dark text-light">
-        <a href="/registerform.php"><p class="m-0 text-light">Click here to register!</p></a>
+        <a href="/user/registerform.php"><p class="m-0 text-light">Click here to register!</p></a>
       </button>
     <?php endif; ?>
   </div>

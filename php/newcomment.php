@@ -24,4 +24,4 @@ if (isset($_POST['comment'])) {
 
   $statement->execute();
 }
-redirect("../commentsform.php?id=$postID");
+redirect("/php/comment/commentsform.php?id=$postID");

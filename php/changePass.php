@@ -15,6 +15,6 @@ if (isset($_POST['password'])) {
   $statement->bindParam(':userID',   $_SESSION['users']['userID'], PDO::PARAM_STR);
   $statement->bindParam(':password', $password,                    PDO::PARAM_STR);
   $statement->execute();
-  $_SESSION['msg'] = "Password has been changed (Please refresh the page)";
+  $_SESSION['msg'] = "Password has been changed";
   redirect('/accounts/settings.php');
 }

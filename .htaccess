@@ -1,3 +1,5 @@
-RewriteEngine on
-
-RewriteRule ^index.php/([^/\.]+)/?$ index.php?page=home [L]
+<IfModule mod_php5.c>
+    #Session timeout
+    php_value session.cookie_lifetime 1800
+    php_value session.gc_maxlifetime 1800
+</IfModule>

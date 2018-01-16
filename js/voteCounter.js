@@ -2,9 +2,9 @@
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
 const voteSums = document.querySelector('.voteSums');
-const url = "../php/vote.php";
-const score = "../php/voteGet.php";
-const voteDir = "../php/voteDir.php";
+const url = "/../php/vote.php";
+const score = "/../php/voteGet.php";
+const voteDir = "/../php/voteDir.php";
 
 // upvotes
 Array.from(upvotes).forEach(upvote => {

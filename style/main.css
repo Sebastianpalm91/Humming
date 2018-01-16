@@ -20,6 +20,9 @@ a {
   text-decoration: none;
 }
 
+textarea {
+  resize: none!important;
+}
 .smallfont {
   font-size: 8px;
 }

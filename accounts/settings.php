@@ -105,9 +105,9 @@ require __DIR__.'/../viewings/header.php';
                     <?php endif; ?>" alt="">
                   </a>
                   <blockquote class="blockquote mb-0 ml-4 pl-4 mr-2">
-                    <form class="col-10 text-truncate pl-0" action="/commentsform.php" method="GET">
+                    <form class="col-10 text-truncate pl-0" action="/php/comment/commentsform.php" method="GET">
                       <button class="btn btn-link m-0 p-0 pb-1 " type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                        <a class="anchor-color" href="/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
+                        <a class="anchor-color" href="/php/comment/commentsform.php"><p class="m-0"><?php echo $post['title'];?></p></a>
                       </button>
                     </form>
                     <p class="mb-0 smallfont">
@@ -117,9 +117,9 @@ require __DIR__.'/../viewings/header.php';
                   <?php if (isset($_SESSION['users'])): ?>
                     <div class="row p-0 m-0 ml-5">
                       <?php if ($post['userID'] === $_SESSION['users']['userID']): ?>
-                        <form action="../editsubmit.php" method="GET">
+                        <form action="/php/editsubmit.php" method="GET">
                           <button class="btn btn-dark text-light m-0 p-0 mr-1" type="submit" name="id" value="<?php echo $post['postID'] ?>">
-                            <a href="../editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
+                            <a href="/php/editsubmit.php" class="m-0 text-light smallfont"><p class="mb-0">Edit my submit</p></a>
                           </button>
                         </form>
                         <button class="deleteSubmit btn btn-dark text-light m-0 p-0">
