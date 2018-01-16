@@ -117,7 +117,7 @@
                 <input type="text" class="form-control" name="title" required>
               </div>
               <div class="form-group">
-                <label>Url</label>
+                <label>Url (ex: google.com, facebook.com)</label>
                 <input type="text" class="form-control" name="url" required>
               </div>
               <div class="form-group">

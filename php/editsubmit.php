@@ -34,7 +34,7 @@
           <input type="text" class="form-control" name="updateTitle" value="<?php echo $value['title'] ?>" required>
         </div>
         <div class="form-group">
-          <label>Url</label>
+          <label>Url (ex: google.com, facebook.com)</label>
           <input type="text" class="form-control" name="updateUrl" value="<?php echo $value['url'] ?>" required>
         </div>
         <div class="form-group">

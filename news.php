@@ -1,7 +1,5 @@
 <?php
 declare(strict_types=1);
-
-// Always start by loading the default application setup.
 require __DIR__.'/viewings/header.php';
 ?>
 <div id="carousel" class="carousel slide col-md-8 mx-auto pt-4" data-ride="carousel">
