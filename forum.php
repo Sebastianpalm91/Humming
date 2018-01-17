@@ -1,4 +1,6 @@
 <div class="m-4">
+	<h6>Forum</h6>
+	<hr class="mt-1 mb-1 m-0 col-sm-8">
   <?php $submits = posts($pdo) ?>
   <!-- <div class="col-sm-8 p-0">
     <div class="dropdown float-right mb-1 dropdownSize">

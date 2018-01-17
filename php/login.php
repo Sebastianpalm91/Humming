@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 require __DIR__.'/autoload.php';
-
+// Login
 if (isset($_POST['email'], $_POST['password'])) {
   if (isset($_SESSION['loginErr'])) {
     unset($_SESSION['loginErr']);

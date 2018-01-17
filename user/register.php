@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../php/autoload.php';
-
+// Register a user
 if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['passwordVerify'])) {
   $_SESSION['registerError'] = [];
   $_SESSION['registerConfirm'] = "Your registration is complete, login below.";

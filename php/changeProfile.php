@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 require __DIR__.'/../php/autoload.php';
-
+// Profile changes
 if (isset($_POST['username'], $_POST['email'], $_POST['bio'])) {
   $userID    = (int)$_SESSION['users']['userID'];
   $email     = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
