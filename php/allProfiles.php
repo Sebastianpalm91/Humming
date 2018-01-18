@@ -27,4 +27,5 @@ require __DIR__.'/../viewings/header.php';
       </div>
     </div>
   <?php endforeach; ?>
+
   <?php require __DIR__.'/../viewings/footer.php'; ?>

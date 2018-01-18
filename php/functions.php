@@ -30,7 +30,7 @@ function posts($pdo) {
   return $resultPosts;
 }
 
-// sort by a-z
+// sort by a-z NOT LIVE ATM
 function postsAlphabetic($pdo) {
   $alphabetic =  "SELECT * FROM posts
                   LEFT JOIN users
@@ -45,7 +45,7 @@ function postsAlphabetic($pdo) {
   return $resultAlphabetic;
 }
 
-// Sort by most upvotes
+// Sort by most upvotes NOT WORKING ATM
 function postsUpvotes($pdo) {
   $upVotes =  "SELECT * FROM posts
                ORDER BY title;";
@@ -59,7 +59,7 @@ function postsUpvotes($pdo) {
   return $resultUpvotes;
 }
 
-// sort by most downvotes
+// sort by most downvotes NOT WORKING ATM
 function postsDownvotes($pdo) {
   $downVotes =  "SELECT * FROM posts
                  ORDER BY title;";
